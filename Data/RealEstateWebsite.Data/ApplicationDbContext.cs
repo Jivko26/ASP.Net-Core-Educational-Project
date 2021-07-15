@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using RealEstateWebsite.Data.Common.Models;
-    using RealEstateWebsite.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using RealEstateWebsite.Data.Common.Models;
+    using RealEstateWebsite.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -23,6 +22,8 @@
             : base(options)
         {
         }
+
+        public DbSet<Property> Properties { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 
