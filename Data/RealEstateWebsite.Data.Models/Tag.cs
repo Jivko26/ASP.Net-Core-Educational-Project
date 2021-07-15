@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RealEstateWebsite.Data.Models
+﻿namespace RealEstateWebsite.Data.Models
 {
-    public class Tag
-    {
 
+    using System.Collections.Generic;
+
+    using RealEstateWebsite.Data.Common.Models;
+
+    public class Tag : BaseDeletableModel<int>
+    {
+        public Tag()
+        {
+            this.Properties = new List<Property>();
+        }
+
+        public string Name { get; set; }
+
+        public ICollection<Property> Properties { get; set; }
     }
 }

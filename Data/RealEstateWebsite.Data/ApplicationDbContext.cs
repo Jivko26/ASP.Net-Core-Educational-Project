@@ -25,6 +25,12 @@
 
         public DbSet<Property> Properties { get; set; }
 
+        public DbSet<EstateAgent> RealEstateAgents { get; set; }
+
+        public DbSet<District> Districts { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
