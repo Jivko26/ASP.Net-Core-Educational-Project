@@ -1,9 +1,8 @@
-﻿namespace RealEstateWebsite.Data
+﻿namespace RealEstateWebsite.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
 
     using RealEstateWebsite.Data.Common.Models;
-    using RealEstateWebsite.Data.Models;
 
     public class Comment : BaseDeletableModel<int>
     {
