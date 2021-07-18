@@ -2,14 +2,19 @@
 {
     using System.Diagnostics;
 
-    using RealEstateWebsite.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using RealEstateWebsite.Web.ViewModels;
 
     public class HomeController : BaseController
     {
+
         public IActionResult Index()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("All", "Post");
+            }
+
             return this.View();
         }
 

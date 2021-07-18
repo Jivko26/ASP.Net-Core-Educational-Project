@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealEstateWebsite.Data;
 
 namespace RealEstateWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210718145707_AddingConstraintsForEstateAgent")]
+    partial class AddingConstraintsForEstateAgent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,8 +338,7 @@ namespace RealEstateWebsite.Data.Migrations
 
                     b.Property<string>("ContactEmail")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -361,8 +362,7 @@ namespace RealEstateWebsite.Data.Migrations
 
                     b.Property<string>("OfficeLocation")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");

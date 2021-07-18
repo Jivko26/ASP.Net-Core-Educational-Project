@@ -36,4 +36,8 @@
     <ProjectReference Include="..\RealEstateWebsite.Web.Infrastructure\RealEstateWebsite.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\RealEstateWebsite.Web.ViewModels\RealEstateWebsite.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
 </Project>

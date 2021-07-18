@@ -14,13 +14,14 @@
         }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string ContactEmail { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(30)]
         public string Telephone { get; set; }
 
         [Required]
@@ -31,6 +32,7 @@
         public string Picture { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string OfficeLocation { get; set; }
 
         public ICollection<Property> Properties { get; set; }
