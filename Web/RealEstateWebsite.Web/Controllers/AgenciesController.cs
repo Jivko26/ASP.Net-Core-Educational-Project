@@ -20,7 +20,6 @@
             var agencies = this.data.RealEstateAgents
                 .Select(a => new AllAgenciesViewModel
                 {
-                    AgentId = a.Id,
                     Name = a.Name,
                     Description = a.Description,
                     Address = a.OfficeLocation,

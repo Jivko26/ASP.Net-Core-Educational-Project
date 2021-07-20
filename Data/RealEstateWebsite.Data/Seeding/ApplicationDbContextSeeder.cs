@@ -28,6 +28,7 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new RealEstateAgenciesSeeder(),
+                              new DistrictsSeeder(),
                           };
 
             foreach (var seeder in seeders)

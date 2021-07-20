@@ -4,27 +4,27 @@
 }
 
 <div class="container">
-    <h1 style="margin: 2%; text-align: center;">All Agencies</h1>
+    <h1 style="margin: 2%; text-align: center;">Rental agents in the Netherlands for rental properties and apartments</h1>
     <div style="padding: 5%;">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Properties in Netherlands</th>
+                    <th scope="col" class="text-center">Name</th>
+                    <th scope="col" class="text-center">Address</th>
+                    <th scope="col" class="text-center">Description</th>
+                    <th scope="col" class="text-center">Properties in Netherlands</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var agent in Model)
                 {
                     <tr>
-                        <th scope="row">
-                            <a asp-controller="Agencies" asp-action="Details">@agent.Name</a>
+                        <th scope="row" class="text-center">
+                            <a asp-controller="Properties" asp-action="All" asp-route-agent="@agent.Name">@agent.Name</a>
                         </th>
-                        <td>@agent.Address</td>
-                        <td>@agent.Description</td>
-                        <td>@agent.TotalPropertiesCount</td>
+                        <td class="text-center">@agent.Address</td>
+                        <td class="text-center">@agent.Description</td>
+                        <td class="text-center">@agent.TotalPropertiesCount</td>
                     </tr>
                 }
             </tbody>

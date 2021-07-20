@@ -2,7 +2,6 @@
 {
     public class AllAgenciesViewModel
     {
-        public int AgentId { get; set; }
 
         public string Name { get; set; }
 

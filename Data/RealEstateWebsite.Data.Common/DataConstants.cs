@@ -12,5 +12,10 @@
 
             public const int OfficeLocationMaxLenght = 50;
         }
+
+        public class District
+        {
+            public const int NameMaxLenght = 20;
+        }
     }
 }
