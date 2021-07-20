@@ -1,0 +1,33 @@
+﻿@model List<AllAgenciesViewModel>
+@{
+    ViewBag.Title = "Our Agencies";
+}
+
+<div class="container">
+    <h1 style="margin: 2%; text-align: center;">All Agencies</h1>
+    <div style="padding: 5%;">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Properties in Netherlands</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var agent in Model)
+                {
+                    <tr>
+                        <th scope="row">
+                            <a asp-controller="Agencies" asp-action="Details">@agent.Name</a>
+                        </th>
+                        <td>@agent.Address</td>
+                        <td>@agent.Description</td>
+                        <td>@agent.TotalPropertiesCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

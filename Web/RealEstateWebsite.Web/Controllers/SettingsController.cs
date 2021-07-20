@@ -3,14 +3,13 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using RealEstateWebsite.Data.Common.Repositories;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.ViewModels.Settings;
 
-    using Microsoft.AspNetCore.Mvc;
-
-    public class SettingsController : BaseController
+    public class SettingsController : Controller
     {
         private readonly ISettingsService settingsService;
 

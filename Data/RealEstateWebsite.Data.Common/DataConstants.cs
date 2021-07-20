@@ -1,0 +1,16 @@
+﻿namespace RealEstateWebsite.Data.Common
+{
+    public class DataConstants
+    {
+        public class EstateAgent
+        {
+            public const int NameMaxLenght = 50;
+
+            public const int EmailMaxLenght = 50;
+
+            public const int TelephoneMaxLenght = 30;
+
+            public const int OfficeLocationMaxLenght = 50;
+        }
+    }
+}

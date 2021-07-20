@@ -1,10 +1,11 @@
 ﻿namespace RealEstateWebsite.Data.Models
 {
-
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using RealEstateWebsite.Data.Common.Models;
+
+    using static RealEstateWebsite.Data.Common.DataConstants.EstateAgent;
 
     public class EstateAgent : BaseDeletableModel<int>
     {
@@ -14,14 +15,14 @@
         }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(NameMaxLenght)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(EmailMaxLenght)]
         public string ContactEmail { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(TelephoneMaxLenght)]
         public string Telephone { get; set; }
 
         [Required]
@@ -32,7 +33,7 @@
         public string Picture { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(OfficeLocationMaxLenght)]
         public string OfficeLocation { get; set; }
 
         public ICollection<Property> Properties { get; set; }
