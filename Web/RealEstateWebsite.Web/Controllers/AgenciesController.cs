@@ -1,34 +1,19 @@
 ﻿namespace RealEstateWebsite.Web.Controllers
 {
-    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
-    using RealEstateWebsite.Data;
-    using RealEstateWebsite.Web.ViewModels.Agencies;
+    using RealEstateWebsite.Services.Data;
 
     public class AgenciesController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly IAgenciesService agenciesService;
 
-        public AgenciesController(ApplicationDbContext dbContext)
-        {
-            this.data = dbContext;
-        }
+        public AgenciesController(IAgenciesService agenciesService)
+            => this.agenciesService = agenciesService;
 
         public IActionResult All()
         {
-            var agencies = this.data.RealEstateAgents
-                .Select(a => new AllAgenciesViewModel
-                {
-                    Name = a.Name,
-                    Description = a.Description,
-                    Address = a.OfficeLocation,
-                    Email = a.ContactEmail,
-                    PhoneNumber = a.Telephone,
-                    TotalPropertiesCount = a.Properties.Count(),
-                })
-                .OrderByDescending(ea => ea.TotalPropertiesCount)
-                .ToList();
+            var agencies = this.agenciesService.GetAllAgencies();
 
             return this.View(agencies);
 

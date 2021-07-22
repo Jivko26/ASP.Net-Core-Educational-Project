@@ -1,31 +1,19 @@
 ﻿namespace RealEstateWebsite.Web.Controllers
 {
-
-    using System.Linq;
-
     using Microsoft.AspNetCore.Mvc;
-    using RealEstateWebsite.Data;
-    using RealEstateWebsite.Web.ViewModels.Districts;
+    using RealEstateWebsite.Services.Data;
 
     public class DistrictsController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly IDistrictsService districtsService;
 
-        public DistrictsController(ApplicationDbContext dbContext)
-        {
-            this.data = dbContext;
-        }
+        public DistrictsController(IDistrictsService districtsService)
+            => this.districtsService = districtsService;
+
 
         public IActionResult All()
         {
-            var districts = this.data.Districts
-                .Select(d => new AllDistrcitsViewModel
-                {
-                    Name = d.Name,
-                    TotalProperties = d.Properties.Count(),
-                })
-                .OrderBy(t => t.Name)
-                .ToList();
+            var districts = this.districtsService.GetAllDistricts();
 
             return this.View(districts);
         }

@@ -1,8 +1,8 @@
-﻿namespace RealEstateWebsite.Web.ViewModels.Agencies
+﻿namespace RealEstateWebsite.Services.Data.ServiceModels.Agencies
 {
-    public class AllAgenciesViewModel
-    {
 
+    public class AllAgenciesServiceModel
+    {
         public string Name { get; set; }
 
         public string Description { get; set; }

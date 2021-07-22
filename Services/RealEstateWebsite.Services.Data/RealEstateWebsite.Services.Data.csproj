@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\RealEstateWebsite.Data.Common\RealEstateWebsite.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\RealEstateWebsite.Data.Models\RealEstateWebsite.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\RealEstateWebsite.Data\RealEstateWebsite.Data.csproj" />
     <ProjectReference Include="..\RealEstateWebsite.Services.Mapping\RealEstateWebsite.Services.Mapping.csproj" />
   </ItemGroup>
 
