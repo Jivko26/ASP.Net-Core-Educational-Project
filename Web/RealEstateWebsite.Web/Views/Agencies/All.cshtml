@@ -12,6 +12,7 @@
                     <th scope="col" class="text-center">Name</th>
                     <th scope="col" class="text-center">Address</th>
                     <th scope="col" class="text-center">Description</th>
+                    <th scope="col" class="text-center">Contacts</th>
                     <th scope="col" class="text-center">Properties in Netherlands</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                         </th>
                         <td class="text-center">@agent.Address</td>
                         <td class="text-center">@agent.Description</td>
+                        <td>@agent.Email, @agent.PhoneNumber</td>
                         <td class="text-center">@agent.TotalPropertiesCount</td>
                     </tr>
                 }

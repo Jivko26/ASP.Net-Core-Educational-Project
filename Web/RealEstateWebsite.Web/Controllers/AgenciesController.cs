@@ -23,6 +23,8 @@
                     Name = a.Name,
                     Description = a.Description,
                     Address = a.OfficeLocation,
+                    Email = a.ContactEmail,
+                    PhoneNumber = a.Telephone,
                     TotalPropertiesCount = a.Properties.Count(),
                 })
                 .OrderByDescending(ea => ea.TotalPropertiesCount)
