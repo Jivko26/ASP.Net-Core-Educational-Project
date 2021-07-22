@@ -1,1 +1,14 @@
-﻿
+﻿@model List<AllDistrcitsViewModel>
+@{
+    ViewBag.Title = "All Districts";
+}
+
+@foreach (var town in Model)
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">@town.Name</h1>
+            <a class="lead" asp-controller="Posts" asp-action="All" asp-route-townName="@town.Name">@town.TotalProperties Properties in Town</a>
+        </div>
+    </div>
+}
