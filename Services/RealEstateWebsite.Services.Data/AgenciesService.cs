@@ -20,6 +20,7 @@
             return this.data.RealEstateAgents
                 .Select(a => new AllAgenciesServiceModel
                 {
+                    AgentId = a.Id,
                     Name = a.Name,
                     Description = a.Description,
                     Address = a.OfficeLocation,
