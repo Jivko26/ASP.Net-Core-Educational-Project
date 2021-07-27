@@ -8,18 +8,12 @@
     public class Post : BaseDeletableModel<int>
     {
 
-        [Required]
-        public string PropertyPicture { get; set; }
+        public string Description { get; set; }
 
-        [Required]
-        public TypeOfPost Type { get; set; }
+        public int EstateAgentId { get; set; }
 
-        [Required]
-        public string AuthorId { get; set; }
+        public EstateAgent EstateAgent { get; set; }
 
-        public ApplicationUser Author { get; set; }
-
-        [Required]
         public int PropertyId { get; set; }
 
         public Property Property { get; set; }

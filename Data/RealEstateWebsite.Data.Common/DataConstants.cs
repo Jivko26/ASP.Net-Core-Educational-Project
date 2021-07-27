@@ -2,6 +2,11 @@
 {
     public class DataConstants
     {
+        public class Property
+        {
+            public const int InteriorMaxLenght = 15;
+        }
+
         public class EstateAgent
         {
             public const int NameMaxLenght = 50;

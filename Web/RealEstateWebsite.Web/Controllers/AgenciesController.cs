@@ -1,6 +1,5 @@
 ﻿namespace RealEstateWebsite.Web.Controllers
 {
-
     using Microsoft.AspNetCore.Mvc;
     using RealEstateWebsite.Services.Data;
 
@@ -16,7 +15,6 @@
             var agencies = this.agenciesService.GetAllAgencies();
 
             return this.View(agencies);
-
         }
     }
 }
