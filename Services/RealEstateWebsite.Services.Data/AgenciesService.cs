@@ -11,13 +11,10 @@
         private readonly ApplicationDbContext data;
 
         public AgenciesService(ApplicationDbContext data)
-        {
-            this.data = data;
-        }
+            => this.data = data;
 
         public IEnumerable<AllAgenciesServiceModel> GetAllAgencies()
-        {
-            return this.data.RealEstateAgents
+            => this.data.RealEstateAgents
                 .Select(a => new AllAgenciesServiceModel
                 {
                     AgentId = a.Id,
@@ -30,6 +27,5 @@
                 })
                 .OrderByDescending(ea => ea.TotalPropertiesCount)
                 .ToList();
-        }
     }
 }

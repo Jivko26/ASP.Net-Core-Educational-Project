@@ -11,13 +11,10 @@
         private readonly ApplicationDbContext data;
 
         public DistrictsService(ApplicationDbContext data)
-        {
-            this.data = data;
-        }
+            => this.data = data;
 
         public IEnumerable<AllDistrictsServiceModel> GetAllDistricts()
-        {
-           return this.data.Districts
+            => this.data.Districts
                 .Select(d => new AllDistrictsServiceModel
                 {
                     Name = d.Name,
@@ -25,6 +22,6 @@
                 })
                 .OrderBy(t => t.Name)
                 .ToList();
-        }
+
     }
 }

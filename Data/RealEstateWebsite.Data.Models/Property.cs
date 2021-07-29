@@ -14,6 +14,10 @@
         public string Interior { get; set; }
 
         [Required]
+        [MaxLength(AddressMaxLenght)]
+        public string Address { get; set; }
+
+        [Required]
         public string PictureUrl { get; set; }
 
         public int LivingArea { get; set; }

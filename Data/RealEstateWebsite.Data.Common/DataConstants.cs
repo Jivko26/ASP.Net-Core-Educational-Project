@@ -5,6 +5,8 @@
         public class Property
         {
             public const int InteriorMaxLenght = 15;
+
+            public const int AddressMaxLenght = 30;
         }
 
         public class EstateAgent
