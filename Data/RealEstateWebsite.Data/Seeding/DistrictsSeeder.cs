@@ -15,7 +15,7 @@
                 return;
             }
 
-            await dbContext.Districts.AddAsync(new District 
+            await dbContext.Districts.AddAsync(new District
             {
                 Name = "Rotterdam",
             });

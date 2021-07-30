@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using RealEstateWebsite.Data.Models.Enum;
+    using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data.ServiceModels.Properties;
 
     public interface IPropertiesService
@@ -25,5 +26,9 @@
             int estateAgentId,
             PropertyType propertyType,
             int? year);
+
+        Property GetPropertyById(int propertyId);
+
+        void SetIsDeletedToTrue(Property property);
     }
 }

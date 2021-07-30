@@ -56,7 +56,6 @@
         public IEnumerable<AllPropertiesServiceModel> GetAllProperties()
             => this.data.Properties
                 .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.CreatedOn)
                 .Select(p => new AllPropertiesServiceModel
                 {
                     Id = p.Id,
@@ -69,11 +68,23 @@
                     Type = p.Type.ToString(),
                     District = p.District.Name,
                 })
+                .OrderByDescending(p => p.Price)
                 .ToList();
 
         public IEnumerable<PropertyType> GetPropertiesTypes()
              => Enum.GetValues(typeof(PropertyType))
             .Cast<PropertyType>()
             .ToList();
+
+        public Property GetPropertyById(int propertyId)
+             => this.data.Properties
+                    .FirstOrDefault(p => p.Id == propertyId);
+
+        public void SetIsDeletedToTrue(Property property)
+        {
+            property.IsDeleted = true;
+
+            this.data.SaveChanges();
+        }
     }
 }

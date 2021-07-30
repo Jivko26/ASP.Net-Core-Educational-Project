@@ -24,10 +24,11 @@
                 {
                     Id = d.Id,
                     Name = d.Name,
-                    TotalProperties = d.Properties.Count,
+                    TotalProperties = this.data.Properties
+                    .Where(p => p.DistcrictId == d.Id)
+                    .Count(),
                 })
-                .OrderBy(t => t.Name)
+                .OrderByDescending(t => t.TotalProperties)
                 .ToList();
-
     }
 }

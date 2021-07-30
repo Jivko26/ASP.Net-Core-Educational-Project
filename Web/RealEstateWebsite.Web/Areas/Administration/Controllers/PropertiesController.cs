@@ -79,19 +79,28 @@
             return this.RedirectToAction(nameof(this.All));
         }
 
-        public IActionResult Details(int propertyId)
+        public IActionResult Details(int id)
         {
             return this.View();
         }
 
-        public IActionResult Edit(int propertyId)
+        public IActionResult Edit(int id)
         {
             return this.View();
         }
 
-        public IActionResult Delete(int propertyId)
+        public IActionResult Delete(int id)
         {
-            return this.View();
+            var property = this.propertiesService.GetPropertyById(id);
+
+            if (property == null)
+            {
+                return this.BadRequest();
+            }
+
+            this.propertiesService.SetIsDeletedToTrue(property);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
         private IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()
