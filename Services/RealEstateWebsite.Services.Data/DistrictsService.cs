@@ -15,8 +15,10 @@
 
         public IEnumerable<AllDistrictsServiceModel> GetAllDistricts()
             => this.data.Districts
+                .Where(d => !d.IsDeleted)
                 .Select(d => new AllDistrictsServiceModel
                 {
+                    Id = d.Id,
                     Name = d.Name,
                     TotalProperties = d.Properties.Count(),
                 })

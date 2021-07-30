@@ -22,8 +22,6 @@
 
         public int LivingArea { get; set; }
 
-        public int YardSize { get; set; }
-
         public int Rooms { get; set; }
 
         public int Floor { get; set; }

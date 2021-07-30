@@ -15,6 +15,7 @@
 
         public IEnumerable<AllAgenciesServiceModel> GetAllAgencies()
             => this.data.RealEstateAgents
+                .Where(a => !a.IsDeleted)
                 .Select(a => new AllAgenciesServiceModel
                 {
                     AgentId = a.Id,
