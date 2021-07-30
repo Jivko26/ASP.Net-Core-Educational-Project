@@ -6,10 +6,9 @@
 
 @if (!Model.Any())
 {
-<div class="container">
-    <h1 class="text-center">No Properties found!</h1>
-    <a asp-controller="Properties" asp-action="Add" class="btn btn-primary">Add Property!</a>
-</div>
+    <div class="container">
+        <h1 class="text-center">No Properties found!</h1>
+    </div>
 }
 
 <div class="row">
@@ -20,7 +19,8 @@
                 <img class="card-img-top" src="@property.ImageUrl">
                 <div class="card-body text-center">
                     <h5 class="card-title text-center">@property.Type  @property.Address @property.District</h5>
-                    <h3 class="card-text text-center">@property.Price</h3>
+                    <h3 class="card-text text-center">@property.Price per month</h3>
+                    <a asp-controller="Properties" asp-action="Details" asp-route-id="@property.Id" class="btn btn-dark">View more</a>
                     <a asp-controller="Properties" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-warning">Edit</a>
                     <a asp-controller="Properties" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
 
@@ -29,3 +29,5 @@
         </div>
     }
 </div>
+
+<a asp-controller="Properties" asp-action="Add" class="btn btn-primary">Add Property!</a>

@@ -6,6 +6,8 @@
 
     public interface IDistrictsService
     {
-        public IEnumerable<AllDistrictsServiceModel> GetAllDistricts();
+        IEnumerable<AllDistrictsServiceModel> GetAllDistricts();
+
+        bool DistrictExists(int districtId);
     }
 }

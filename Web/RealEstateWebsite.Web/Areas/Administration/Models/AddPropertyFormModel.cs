@@ -37,10 +37,11 @@
         [Range(MinFloors, MaxFloors)]
         public int TotalFloors { get; set; }
 
-        [Display(Name = "Year (Not Mandatory)")]
+        [Display(Name = "Year of construction (Not Mandatory)")]
         [Range(MinYear, MaxYear)]
         public int? Year { get; set; }
 
+        [Display(Name = "Price per month in euro")]
         [Range(MinPrice, MaxPrice)]
         public decimal Price { get; set; }
 

@@ -13,6 +13,10 @@
         public DistrictsService(ApplicationDbContext data)
             => this.data = data;
 
+        public bool DistrictExists(int districtId)
+            => this.data.Districts
+                   .Any(d => d.Id == districtId);
+
         public IEnumerable<AllDistrictsServiceModel> GetAllDistricts()
             => this.data.Districts
                 .Where(d => !d.IsDeleted)
@@ -20,7 +24,7 @@
                 {
                     Id = d.Id,
                     Name = d.Name,
-                    TotalProperties = d.Properties.Count(),
+                    TotalProperties = d.Properties.Count,
                 })
                 .OrderBy(t => t.Name)
                 .ToList();

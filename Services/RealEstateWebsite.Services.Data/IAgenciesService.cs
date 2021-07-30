@@ -6,6 +6,6 @@
 
     public interface IAgenciesService
     {
-        public IEnumerable<AllAgenciesServiceModel> GetAllAgencies();
+        IEnumerable<AllAgenciesServiceModel> GetAllAgencies();
     }
 }

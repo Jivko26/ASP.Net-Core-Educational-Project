@@ -1,5 +1,6 @@
 ﻿namespace RealEstateWebsite.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
@@ -36,50 +37,52 @@
             return this.View(new AddPropertyFormModel
             {
                 Types = this.propertiesService.GetPropertiesTypes(),
-                Districts = this.districtsService.GetAllDistricts()
-                            .Select(d => new PropertysDistrictViewModel
-                            {
-                                Id = d.Id,
-                                Name = d.Name,
-                            })
+                Districts = this.GetPropertyDistricts()
                             .ToList(),
-                EstateAgents = this.agenciesService.GetAllAgencies()
-                            .Select(a => new PropertysEstateAgentViewModel
-                            {
-                                Id = a.AgentId,
-                                Name = a.Name,
-                            })
-                            .ToList(),
+                EstateAgents = this.GetPropertyEstateAgents(),
             });
         }
 
-        //[HttpPost]
-        //public IActionResult Add(AddPropertyFormModel property)
-        //{
+        [HttpPost]
+        public IActionResult Add(AddPropertyFormModel property)
+        {
 
-        //    if (!this.cars.CategoryExists(car.CategoryId))
-        //    {
-        //        this.ModelState.AddModelError(nameof(car.CategoryId), "Category does not exist.");
-        //    }
+            if (!this.districtsService.DistrictExists(property.DistrictId))
+            {
+                this.ModelState.AddModelError(nameof(property.DistrictId), "District does not exist.");
+            }
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        car.Categories = this.cars.AllCategories();
+            if (!this.ModelState.IsValid)
+            {
+                property.Types = this.propertiesService.GetPropertiesTypes();
+                property.Districts = this.GetPropertyDistricts();
+                property.EstateAgents = this.GetPropertyEstateAgents();
 
-        //        return View(car);
-        //    }
+                return this.View(property);
+            }
 
-        //    this.cars.Create(
-        //        car.Brand,
-        //        car.Model,
-        //        car.Description,
-        //        car.ImageUrl,
-        //        car.Year,
-        //        car.CategoryId,
-        //        dealerId);
+            this.propertiesService.CreateProperty(
+                property.Id,
+                property.Interior,
+                property.Address,
+                property.PictureUrl,
+                property.LivingArea,
+                property.Rooms,
+                property.Floor,
+                property.TotalFloors,
+                property.Price,
+                property.DistrictId,
+                property.EstateAgentId,
+                property.Type,
+                property.Year);
 
-        //    return RedirectToAction(nameof(All));
-        //}
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        public IActionResult Details(int propertyId)
+        {
+            return this.View();
+        }
 
         public IActionResult Edit(int propertyId)
         {
@@ -90,5 +93,23 @@
         {
             return this.View();
         }
+
+        private IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()
+            => this.districtsService.GetAllDistricts()
+                            .Select(d => new PropertysDistrictViewModel
+                            {
+                                Id = d.Id,
+                                Name = d.Name,
+                            }).ToList();
+
+        private IEnumerable<PropertysEstateAgentViewModel> GetPropertyEstateAgents()
+           => this.agenciesService.GetAllAgencies()
+                            .Select(a => new PropertysEstateAgentViewModel
+                            {
+                                Id = a.AgentId,
+                                Name = a.Name,
+                            })
+                            .ToList();
     }
+
 }
