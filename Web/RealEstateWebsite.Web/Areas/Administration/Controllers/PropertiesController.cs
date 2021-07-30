@@ -4,6 +4,7 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
+    using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.Areas.Administration.Models;
 
@@ -86,7 +87,66 @@
 
         public IActionResult Edit(int id)
         {
-            return this.View();
+
+            var property = this.propertiesService.GetPropertyById(id);
+
+            var addPropertyForm = this.PreparePropertyFormModel(
+                property.Id,
+                property.Interior,
+                property.Address,
+                property.PictureUrl,
+                property.LivingArea,
+                property.Rooms,
+                property.Floor,
+                property.TotalFloors,
+                property.Price,
+                property.DistcrictId,
+                property.EstateAgentId,
+                property.Type,
+                property.Year);
+
+            addPropertyForm.Districts = this.GetPropertyDistricts();
+            addPropertyForm.EstateAgents = this.GetPropertyEstateAgents();
+            addPropertyForm.Types = this.propertiesService.GetPropertiesTypes();
+
+            return this.View(addPropertyForm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, AddPropertyFormModel property)
+        {
+            // TODO: Extract the validation for Add and Edit method in private methods or services plus add more validations
+
+            if (!this.districtsService.DistrictExists(property.DistrictId))
+            {
+                this.ModelState.AddModelError(nameof(property.DistrictId), "District does not exist.");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                property.Types = this.propertiesService.GetPropertiesTypes();
+                property.Districts = this.GetPropertyDistricts();
+                property.EstateAgents = this.GetPropertyEstateAgents();
+
+                return this.View(property);
+            }
+
+            this.propertiesService.Edit(
+                property.Id,
+                property.Interior,
+                property.Address,
+                property.PictureUrl,
+                property.LivingArea,
+                property.Rooms,
+                property.Floor,
+                property.TotalFloors,
+                property.Price,
+                property.DistrictId,
+                property.EstateAgentId,
+                property.Type,
+                property.Year);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult Delete(int id)
@@ -101,6 +161,39 @@
             this.propertiesService.SetIsDeletedToTrue(property);
 
             return this.RedirectToAction(nameof(this.All));
+        }
+
+        private AddPropertyFormModel PreparePropertyFormModel(
+            int id,
+            string interior,
+            string address,
+            string pictureUrl,
+            int livingArea,
+            int rooms,
+            int floor,
+            int totalFloors,
+            decimal price,
+            int districtId,
+            int estateAgentId,
+            PropertyType propertyType,
+            int? year)
+        {
+            return new AddPropertyFormModel
+            {
+                Id = id,
+                Interior = interior,
+                Address = address,
+                PictureUrl = pictureUrl,
+                LivingArea = livingArea,
+                Rooms = rooms,
+                Floor = floor,
+                TotalFloors = totalFloors,
+                Price = price,
+                DistrictId = districtId,
+                EstateAgentId = estateAgentId,
+                Type = propertyType,
+                Year = year,
+            };
         }
 
         private IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()

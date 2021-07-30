@@ -53,6 +53,45 @@
             this.data.SaveChanges();
         }
 
+        public void Edit(
+            int id,
+            string interior,
+            string address,
+            string pictureUrl,
+            int livingArea,
+            int rooms,
+            int floor,
+            int totalFloors,
+            decimal price,
+            int districtId,
+            int estateAgentId,
+            PropertyType propertyType,
+            int? year)
+        {
+            var property = this.data.Properties.FirstOrDefault(p => p.Id == id);
+
+            if (property == null)
+            {
+                return;
+            }
+
+            property.Interior = interior;
+            property.Address = address;
+            property.PictureUrl = pictureUrl;
+            property.LivingArea = livingArea;
+            property.Rooms = rooms;
+            property.Floor = floor;
+            property.TotalFloors = totalFloors;
+            property.Price = price;
+            property.DistcrictId = districtId;
+            property.EstateAgentId = estateAgentId;
+            property.Type = propertyType;
+            property.Year = year;
+
+            this.data.SaveChanges();
+
+        }
+
         public IEnumerable<AllPropertiesServiceModel> GetAllProperties()
             => this.data.Properties
                 .Where(p => !p.IsDeleted)

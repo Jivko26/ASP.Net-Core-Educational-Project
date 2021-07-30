@@ -27,6 +27,21 @@
             PropertyType propertyType,
             int? year);
 
+        void Edit(
+            int id,
+            string interior,
+            string address,
+            string pictureUrl,
+            int livingArea,
+            int rooms,
+            int floor,
+            int totalFloors,
+            decimal price,
+            int districtId,
+            int estateAgentId,
+            PropertyType propertyType,
+            int? year);
+
         Property GetPropertyById(int propertyId);
 
         void SetIsDeletedToTrue(Property property);
