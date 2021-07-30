@@ -1,1 +1,91 @@
-﻿
+﻿@model AddPropertyFormModel
+
+@{
+    ViewBag.Title = "Add Property";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="PictureUrl"></label>
+                <input asp-for="PictureUrl" class="form-control" placeholder="Property Picture's url here...">
+                <span asp-validation-for="PictureUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Interior"></label>
+                <input asp-for="Interior" class="form-control" placeholder="Upholstered, Furnished, etc...">
+                <span asp-validation-for="Interior" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control">
+                <span asp-validation-for="Address" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivingArea"></label>
+                <textarea asp-for="LivingArea" rows="4" class="form-control"></textarea>
+                <span asp-validation-for="LivingArea" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rooms"></label>
+                <input asp-for="Rooms" class="form-control">
+                <span asp-validation-for="Rooms" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Floor"></label>
+                <input asp-for="Floor" class="form-control">
+                <span asp-validation-for="Floor" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalFloors"></label>
+                <input asp-for="TotalFloors" class="form-control">
+                <span asp-validation-for="TotalFloors" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" placeholder="@DateTime.UtcNow.Year">
+                <span asp-validation-for="Year" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type"></label>
+                <select asp-for="Type" class="form-control">
+                    @foreach (var type in Model.Types)
+                    {
+                        <option value="@type.ToString()">@type.ToString()</option>
+                    }
+                </select>
+                <span asp-validation-for="Type" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistrictId"></label>
+                <select asp-for="DistrictId" class="form-control">
+                    @foreach (var district in Model.Districts)
+                    {
+                        <option value="@district.Id">@district.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="DistrictId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstateAgentId"></label>
+                <select asp-for="EstateAgentId" class="form-control">
+                    @foreach (var agent in Model.EstateAgents)
+                    {
+                        <option value="@agent.Id">@agent.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="EstateAgentId" class="small text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary mt-3" type="submit" value="Save" />
+        </form>
+    </div>
+</div>

@@ -15,8 +15,8 @@ namespace RealEstateWebsite.Data.Common
             public const int MinLivingArea = 0;
             public const int MaxLivingArea = 5000;
 
-            public const int MaxRooms = 0;
-            public const int MinRooms = 10;
+            public const int MaxRooms = 10;
+            public const int MinRooms = 0;
 
             public const int MaxFloors = 10;
             public const int MinFloors = 0;

@@ -6,9 +6,10 @@
 
 @if (!Model.Any())
 {
-    <div class="container">
-        <h1 class="text-center">No Properties found!</h1>
-    </div>
+<div class="container">
+    <h1 class="text-center">No Properties found!</h1>
+    <a asp-controller="Properties" asp-action="Add" class="btn btn-primary">Add Property!</a>
+</div>
 }
 
 <div class="row">
