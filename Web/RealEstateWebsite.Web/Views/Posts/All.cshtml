@@ -1,0 +1,56 @@
+﻿
+
+@{
+    ViewBag.Titla = "All Posts";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                some title
+            </th>
+            <th>
+                some type
+            </th>
+            <th>
+                is deleted
+            </th>
+            <th>
+                created on
+            </th>
+            <th>
+                modified on
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                some title
+            </td>
+            <td>
+                some type
+            </td>
+            <td>
+                is deleted
+                deleted on
+            </td>
+            <td>
+                created on
+            </td>
+            <td>
+                modified on
+            </td>
+            <td>
+                <a asp-controller="Posts" asp-action="Edit">Edit</a> |
+                <a asp-controller="Posts" asp-action="Details">Details</a> |
+                <a asp-controller="Posts" asp-action="Delete">Delete</a>
+            </td>
+
+    </tbody>
+</table>
