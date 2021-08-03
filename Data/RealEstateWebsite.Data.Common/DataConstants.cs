@@ -26,9 +26,23 @@
             public const double MinPrice = 0;
         }
 
+        public class View
+        {
+            public const int FirstNameMaxLenght = 10;
+
+            public const int LastNameMaxLenght = 15;
+
+            public const int EmailAddressMaxLenght = 15;
+
+            public const int PhoneMaxLenght = 15;
+
+            public const int DescriptionMaxLenght = 1000;
+        }
+
         public class Post
         {
             public const int TitleMaxLenght = 50;
+
             public const int DescriptionMaxLenght = 1000;
         }
 

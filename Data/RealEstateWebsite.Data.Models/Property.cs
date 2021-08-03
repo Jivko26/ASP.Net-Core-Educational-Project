@@ -1,5 +1,6 @@
 ﻿namespace RealEstateWebsite.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using RealEstateWebsite.Data.Common.Models;
@@ -9,6 +10,11 @@
 
     public class Property : BaseDeletableModel<int>
     {
+        public Property()
+        {
+            this.Viewings = new List<Viewing>();
+        }
+
         [Required]
         [MaxLength(InteriorMaxLenght)]
         public string Interior { get; set; }
@@ -42,6 +48,8 @@
         public int EstateAgentId { get; set; }
 
         public EstateAgent EstateAgent { get; set; }
+
+        public ICollection<Viewing> Viewings { get; set; }
 
     }
 }

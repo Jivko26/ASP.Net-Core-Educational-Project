@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealEstateWebsite.Data;
 
 namespace RealEstateWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210803110656_AddingTableViewings")]
+    partial class AddingTableViewings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -528,9 +530,6 @@ namespace RealEstateWebsite.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -574,16 +573,9 @@ namespace RealEstateWebsite.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("PropertyId");
 
                     b.ToTable("Viewings");
                 });
@@ -694,23 +686,6 @@ namespace RealEstateWebsite.Data.Migrations
                     b.Navigation("EstateAgent");
                 });
 
-            modelBuilder.Entity("RealEstateWebsite.Data.Models.Viewing", b =>
-                {
-                    b.HasOne("RealEstateWebsite.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("RealEstateWebsite.Data.Models.Property", "Property")
-                        .WithMany("Viewings")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Property");
-                });
-
             modelBuilder.Entity("RealEstateWebsite.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
@@ -728,11 +703,6 @@ namespace RealEstateWebsite.Data.Migrations
             modelBuilder.Entity("RealEstateWebsite.Data.Models.EstateAgent", b =>
                 {
                     b.Navigation("Properties");
-                });
-
-            modelBuilder.Entity("RealEstateWebsite.Data.Models.Property", b =>
-                {
-                    b.Navigation("Viewings");
                 });
 #pragma warning restore 612, 618
         }
