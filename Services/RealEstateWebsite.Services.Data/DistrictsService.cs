@@ -30,5 +30,6 @@
                 })
                 .OrderByDescending(t => t.TotalProperties)
                 .ToList();
+
     }
 }

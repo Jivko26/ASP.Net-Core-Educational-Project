@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RealEstateWebsite.Data.Common
+﻿namespace RealEstateWebsite.Data.Common
 {
     public class DataConstants
     {
@@ -26,7 +24,12 @@ namespace RealEstateWebsite.Data.Common
 
             public const double MaxPrice = double.MaxValue;
             public const double MinPrice = 0;
+        }
 
+        public class Post
+        {
+            public const int TitleMaxLenght = 50;
+            public const int DescriptionMaxLenght = 1000;
         }
 
         public class EstateAgent

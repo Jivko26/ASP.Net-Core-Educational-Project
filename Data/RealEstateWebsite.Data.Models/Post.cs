@@ -3,11 +3,17 @@
     using System.ComponentModel.DataAnnotations;
 
     using RealEstateWebsite.Data.Common.Models;
-    using RealEstateWebsite.Data.Models.Enum;
+
+    using static RealEstateWebsite.Data.Common.DataConstants.Post;
 
     public class Post : BaseDeletableModel<int>
     {
+        [Required]
+        [MaxLength(TitleMaxLenght)]
+        public string Title { get; set; }
 
+        [Required]
+        [MaxLength(DescriptionMaxLenght)]
         public string Description { get; set; }
 
         public int EstateAgentId { get; set; }
