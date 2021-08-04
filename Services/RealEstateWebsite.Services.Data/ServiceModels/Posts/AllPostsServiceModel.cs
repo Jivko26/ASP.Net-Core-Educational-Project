@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RealEstateWebsite.Services.Data.ServiceModels.Posts
+﻿namespace RealEstateWebsite.Services.Data.ServiceModels.Posts
 {
     public class AllPostsServiceModel
     {
-        
+
     }
 }

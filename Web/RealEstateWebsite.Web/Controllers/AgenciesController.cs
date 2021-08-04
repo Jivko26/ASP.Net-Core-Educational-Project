@@ -1,20 +1,40 @@
 ﻿namespace RealEstateWebsite.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.ServiceModels.Agencies;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class AgenciesController : Controller
     {
         private readonly IAgenciesService agenciesService;
+        private readonly IMemoryCache cache;
 
-        public AgenciesController(IAgenciesService agenciesService)
-            => this.agenciesService = agenciesService;
+        public AgenciesController(IAgenciesService agenciesService, IMemoryCache cache)
+        {
+            this.agenciesService = agenciesService;
+            this.cache = cache;
+        }
 
         public IActionResult All()
         {
-            var agencies = this.agenciesService.GetAllAgencies();
+            const string allAgenciesCacheKey = "AllAgenciesCacheKey";
 
-            return this.View(agencies);
+            var allAgencies = this.cache.Get<List<AllAgenciesServiceModel>>(allAgenciesCacheKey);
+
+            if (allAgencies == null)
+            {
+                allAgencies = this.agenciesService
+                   .GetAllAgencies()
+                   .AsEnumerable()
+                   .ToList();
+
+                this.cache.Set(allAgenciesCacheKey, allAgencies);
+            }
+
+            return this.View(allAgencies);
         }
     }
 }
