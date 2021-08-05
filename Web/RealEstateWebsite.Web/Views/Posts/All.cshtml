@@ -1,7 +1,7 @@
-﻿
+﻿@using RealEstateWebsite.Common
 
 @{
-    ViewBag.Titla = "All Posts";
+    ViewBag.Title = "All Posts";
 }
 
 @*if (!Model.Any())
@@ -11,9 +11,6 @@
     </div>
 }*@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -54,10 +51,13 @@
                 modified on
             </td>
             <td>
-                <a asp-controller="Posts" asp-action="Edit">Edit</a> |
-                <a asp-controller="Posts" asp-action="Details">Details</a> |
-                <a asp-controller="Posts" asp-action="Delete">Delete</a>
-            </td>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <a asp-controller="Posts" asp-action="Edit">Edit</a>
+                    <a asp-controller="Posts" asp-action="Delete">Delete</a>
+                }
 
+                <a asp-controller="Posts" asp-action="Details">Details</a>
+            </td>
     </tbody>
 </table>

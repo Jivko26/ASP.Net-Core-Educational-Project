@@ -2,23 +2,48 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using RealEstateWebsite.Common;
+    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Web.ViewModels.Posts;
 
     public class PostsController : Controller
     {
+        private readonly IPropertiesService propertiesService;
+
+        public PostsController(IPropertiesService propertiesService)
+        {
+            this.propertiesService = propertiesService;
+        }
+
         public IActionResult All()
         {
             return this.View();
         }
 
-        [Authorize]
-        public IActionResult Create()
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Create(int propertyId)
         {
-            return this.View();
+            var property = this.propertiesService.GetPropertyById(propertyId);
+
+            return this.View(new CreatePostFormModel
+            {
+               PropertyInterior = property.Interior,
+               PropertyAddress = property.Address,
+               PropertyPictureUrl = property.PictureUrl,
+               PropertyFloor = property.Floor,
+               PropertyTotalFloors = property.TotalFloors,
+               PropertyLivingArea = property.LivingArea,
+               PropertyPrice = property.Price,
+               PropertyRooms = property.Rooms,
+               PropertyType = property.Type.ToString(),
+               PropertyYear = property.Year,
+               EstateAgent = property.EstateAgent.Name,
+            });
         }
 
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         [HttpPost]
-        public IActionResult Create(string smth)
+        public IActionResult Create(int propertyId, CreatePostFormModel postFormModel)
         {
             return this.View();
         }

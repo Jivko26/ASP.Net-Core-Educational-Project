@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using Microsoft.EntityFrameworkCore;
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
@@ -117,6 +117,7 @@
 
         public Property GetPropertyById(int propertyId)
              => this.data.Properties
+                    .Include(p => p.EstateAgent)
                     .FirstOrDefault(p => p.Id == propertyId);
 
         public void SetIsDeletedToTrue(Property property)

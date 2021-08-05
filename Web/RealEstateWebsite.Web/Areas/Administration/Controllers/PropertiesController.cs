@@ -80,11 +80,6 @@
             return this.RedirectToAction(nameof(this.All));
         }
 
-        public IActionResult Details(int id)
-        {
-            return this.View();
-        }
-
         public IActionResult Edit(int id)
         {
 

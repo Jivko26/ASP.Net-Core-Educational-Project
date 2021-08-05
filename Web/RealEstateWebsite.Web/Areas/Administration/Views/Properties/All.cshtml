@@ -20,7 +20,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-center">@property.Type  @property.Address @property.District</h5>
                     <h3 class="card-text text-center">@property.Price per month</h3>
-                    <a asp-controller="Properties" asp-action="Details" asp-route-id="@property.Id" class="btn btn-dark">View more</a>
+                    <a asp-area="" asp-controller="Posts" asp-action="Create" asp-route-propertyId="@property.Id" class="btn btn-dark">List property</a>
                     <a asp-controller="Properties" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-warning">Edit</a>
                     <a asp-controller="Properties" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
 
