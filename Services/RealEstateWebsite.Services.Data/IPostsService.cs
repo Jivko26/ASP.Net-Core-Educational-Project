@@ -7,5 +7,7 @@
     public interface IPostsService
     {
         IEnumerable<AllPostsServiceModel> GetAllPosts();
+
+        void CreatePost(string title, string description, int estateAgentId, int propertyId);
     }
 }

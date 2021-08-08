@@ -1,11 +1,12 @@
 ﻿namespace RealEstateWebsite.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Services.Data.ServiceModels.Agencies;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class AgenciesController : Controller
     {

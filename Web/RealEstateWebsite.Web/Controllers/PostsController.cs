@@ -5,14 +5,22 @@
     using RealEstateWebsite.Common;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.ViewModels.Posts;
+    using RealEstateWebsite.Data.Models;
 
     public class PostsController : Controller
     {
         private readonly IPropertiesService propertiesService;
+        private readonly IAgenciesService agenciesService;
+        private readonly IPostsService postsService;
 
-        public PostsController(IPropertiesService propertiesService)
+        public PostsController(
+            IPropertiesService propertiesService,
+            IAgenciesService agenciesService,
+            IPostsService postsService)
         {
             this.propertiesService = propertiesService;
+            this.agenciesService = agenciesService;
+            this.postsService = postsService;
         }
 
         public IActionResult All()
@@ -25,27 +33,24 @@
         {
             var property = this.propertiesService.GetPropertyById(propertyId);
 
-            return this.View(new CreatePostFormModel
-            {
-               PropertyInterior = property.Interior,
-               PropertyAddress = property.Address,
-               PropertyPictureUrl = property.PictureUrl,
-               PropertyFloor = property.Floor,
-               PropertyTotalFloors = property.TotalFloors,
-               PropertyLivingArea = property.LivingArea,
-               PropertyPrice = property.Price,
-               PropertyRooms = property.Rooms,
-               PropertyType = property.Type.ToString(),
-               PropertyYear = property.Year,
-               EstateAgent = property.EstateAgent.Name,
-            });
+            return this.View(this.CreatePostFormModel(property));
+
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         [HttpPost]
         public IActionResult Create(int propertyId, CreatePostFormModel postFormModel)
         {
-            return this.View();
+            var estateAgentId = this.agenciesService.GetEstateAgentId(postFormModel.EstateAgent);
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(postFormModel);
+            }
+
+            this.postsService.CreatePost(postFormModel.Title, postFormModel.Description, estateAgentId, propertyId);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
         //[Authorize]
@@ -118,6 +123,24 @@
         public IActionResult Delete(int postId)
         {
             return this.View();
+        }
+
+        private CreatePostFormModel CreatePostFormModel(Property property)
+        {
+            return new CreatePostFormModel
+            {
+                PropertyInterior = property.Interior,
+                PropertyAddress = property.Address,
+                PropertyPictureUrl = property.PictureUrl,
+                PropertyFloor = property.Floor,
+                PropertyTotalFloors = property.TotalFloors,
+                PropertyLivingArea = property.LivingArea,
+                PropertyPrice = property.Price,
+                PropertyRooms = property.Rooms,
+                PropertyType = property.Type.ToString(),
+                PropertyYear = property.Year,
+                EstateAgent = property.EstateAgent.Name,
+            };
         }
     }
 }

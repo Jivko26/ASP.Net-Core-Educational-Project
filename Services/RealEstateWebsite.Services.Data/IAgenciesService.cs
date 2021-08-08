@@ -7,5 +7,7 @@
     public interface IAgenciesService
     {
         IEnumerable<AllAgenciesServiceModel> GetAllAgencies();
+
+        int GetEstateAgentId(string name);
     }
 }

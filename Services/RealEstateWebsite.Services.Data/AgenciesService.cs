@@ -28,5 +28,11 @@
                 })
                 .OrderByDescending(ea => ea.TotalPropertiesCount)
                 .ToList();
+
+        public int GetEstateAgentId(string name)
+            => this.data.RealEstateAgents
+                 .Where(e => e.Name == name)
+                 .Select(e => e.Id)
+                 .FirstOrDefault();
     }
 }
