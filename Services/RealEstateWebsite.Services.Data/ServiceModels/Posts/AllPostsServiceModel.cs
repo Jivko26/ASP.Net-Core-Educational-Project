@@ -2,6 +2,8 @@
 {
     using System;
 
+    using RealEstateWebsite.Data.Models;
+
     public class AllPostsServiceModel
     {
         public int Id { get; set; }
@@ -12,6 +14,11 @@
 
         public string PropertyEstateAgent { get; set; }
 
+        public int PropertyId { get; set; }
+
+        public int EstateAgentId { get; set; }
+
         public DateTime CreatedOn { get; set; }
+
     }
 }

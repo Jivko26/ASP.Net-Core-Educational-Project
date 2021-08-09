@@ -9,6 +9,10 @@
     {
         IEnumerable<AllPostsServiceModel> GetAllPosts();
 
+        IEnumerable<AllPostsServiceModel> GetAllPostsByAgent(int agentId);
+
+        IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int propertyId);
+
         void CreatePost(string title, string description, int estateAgentId, int propertyId);
 
         Post GetPostById(int postId);

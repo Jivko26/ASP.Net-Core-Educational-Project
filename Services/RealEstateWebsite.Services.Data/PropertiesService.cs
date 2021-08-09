@@ -115,6 +115,10 @@
             .Cast<PropertyType>()
             .ToList();
 
+        public Property GetPropertyByDistrict(int id)
+            => this.data.Properties
+                   .FirstOrDefault(p => p.DistcrictId == id);
+
         public Property GetPropertyById(int propertyId)
              => this.data.Properties
                     .Include(p => p.EstateAgent)

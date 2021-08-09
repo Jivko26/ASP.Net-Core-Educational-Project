@@ -1,0 +1,22 @@
+﻿@model List<AllPostsServiceModel>
+
+@{
+    ViewBag.Title = "All Posts to this Agency";
+    var agentName = Model.Select(p => p.PropertyEstateAgent).FirstOrDefault();
+}
+
+@if (!Model.Any())
+{
+    <div class="container">
+        <h1 class="text-center">There are currently no offers on our website!</h1>
+    </div>
+}
+
+@if (Model.Any())
+{
+    <div class="container">
+        <h1 class="text-center">All Posts from @agentName</h1>
+    </div>
+}
+
+<partial name="_AllPostsPartial" model="@Model" />

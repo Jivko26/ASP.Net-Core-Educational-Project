@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data.ServiceModels.Posts;
@@ -39,7 +40,38 @@
                         CreatedOn = p.CreatedOn,
                         PropertyEstateAgent = p.EstateAgent.Name,
                         PropertyPrice = p.Property.Price,
+                        PropertyId = p.Property.Id,
+                        EstateAgentId = p.EstateAgentId,
                     })
+                    .OrderByDescending(ap => ap.CreatedOn)
+                    .ToList();
+
+        public IEnumerable<AllPostsServiceModel> GetAllPostsByAgent(int agentId)
+            => this.data.Posts
+                    .Where(p => !p.IsDeleted && p.EstateAgent.Id == agentId)
+                    .Select(p => new AllPostsServiceModel
+                    {
+                        Id = p.Id,
+                        Title = p.Title,
+                        CreatedOn = p.CreatedOn,
+                        PropertyEstateAgent = p.EstateAgent.Name,
+                        PropertyPrice = p.Property.Price,
+                    })
+                    .OrderByDescending(ap => ap.CreatedOn)
+                    .ToList();
+
+        public IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int propertyId)
+            => this.data.Posts
+                    .Select(p => new AllPostsServiceModel
+                    {
+                        Id = p.Id,
+                        Title = p.Title,
+                        CreatedOn = p.CreatedOn,
+                        PropertyEstateAgent = p.EstateAgent.Name,
+                        PropertyPrice = p.Property.Price,
+                        PropertyId = p.Property.Id,
+                    })
+                    .Where(ap => ap.PropertyId == propertyId)
                     .OrderByDescending(ap => ap.CreatedOn)
                     .ToList();
 

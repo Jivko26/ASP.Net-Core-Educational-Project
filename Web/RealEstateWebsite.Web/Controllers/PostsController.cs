@@ -3,9 +3,9 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RealEstateWebsite.Common;
+    using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.ViewModels.Posts;
-    using RealEstateWebsite.Data.Models;
 
     public class PostsController : Controller
     {
@@ -26,6 +26,22 @@
         public IActionResult All()
         {
             var posts = this.postsService.GetAllPosts();
+
+            return this.View(posts);
+        }
+
+        public IActionResult ByAgent(int agentId)
+        {
+            var posts = this.postsService.GetAllPostsByAgent(agentId);
+
+            return this.View(posts);
+        }
+
+        public IActionResult ByDistrict(int id)
+        {
+            var propertyByDistrict = this.propertiesService.GetPropertyByDistrict(id);
+
+            var posts = this.postsService.GetAllPostsByDistrict(propertyByDistrict.Id);
 
             return this.View(posts);
         }
@@ -51,7 +67,6 @@
             }
 
             this.postsService.CreatePost(postFormModel.Title, postFormModel.Description, estateAgentId, propertyId);
-
             return this.RedirectToAction(nameof(this.All));
         }
 

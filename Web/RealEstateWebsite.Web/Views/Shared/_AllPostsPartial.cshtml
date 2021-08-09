@@ -1,0 +1,53 @@
+﻿@using RealEstateWebsite.Common
+@model List<AllPostsServiceModel>
+
+@{
+    ViewBag.Title = "All Posts";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Agency
+            </th>
+            <th>
+                Created On
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    @post.Title
+                </td>
+                <td>
+                    @post.PropertyPrice
+                </td>
+                <td>
+                    @post.PropertyEstateAgent
+                </td>
+                <td>
+                    @post.CreatedOn
+                </td>
+                <td>
+                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@post.Id">Edit</a>
+                        <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@post.Id">Delete</a>
+                    }
+
+                    <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

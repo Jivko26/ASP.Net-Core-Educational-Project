@@ -44,6 +44,8 @@
 
         Property GetPropertyById(int propertyId);
 
+        Property GetPropertyByDistrict(int id);
+
         void SetIsDeletedToTrue(Property property);
     }
 }
