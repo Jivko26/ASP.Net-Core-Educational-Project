@@ -1,63 +1,64 @@
 ﻿@using RealEstateWebsite.Common
+@model List<AllPostsServiceModel>
 
 @{
     ViewBag.Title = "All Posts";
 }
 
-@*if (!Model.Any())
+@if (!Model.Any())
 {
     <div class="container">
         <h1 class="text-center">There are currently no offers on our website!</h1>
     </div>
-}*@
+}
+
+<div class="container">
+    <h1 class="text-center">Our current offerings</h1>
+</div>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                some title
+                Title
             </th>
             <th>
-                some type
+                Price
             </th>
             <th>
-                is deleted
+                Agency
             </th>
             <th>
-                created on
+                Created On
             </th>
-            <th>
-                modified on
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                some title
-            </td>
-            <td>
-                some type
-            </td>
-            <td>
-                is deleted
-                deleted on
-            </td>
-            <td>
-                created on
-            </td>
-            <td>
-                modified on
-            </td>
-            <td>
-                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                {
-                    <a asp-controller="Posts" asp-action="Edit">Edit</a>
-                    <a asp-controller="Posts" asp-action="Delete">Delete</a>
-                }
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    @post.Title
+                </td>
+                <td>
+                    @post.PropertyPrice
+                </td>
+                <td>
+                    @post.PropertyEstateAgent
+                </td>
+                <td>
+                    @post.CreatedOn
+                </td>
+                <td>
+                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@post.Id">Edit</a>
+                        <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@post.Id">Delete</a>
+                    }
 
-                <a asp-controller="Posts" asp-action="Details">Details</a>
-            </td>
+                    <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

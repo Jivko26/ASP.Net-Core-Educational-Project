@@ -25,7 +25,9 @@
 
         public IActionResult All()
         {
-            return this.View();
+            var posts = this.postsService.GetAllPosts();
+
+            return this.View(posts);
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -119,10 +121,19 @@
         //    return this.RedirectToAction(nameof(this.All));
         //}
 
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int postId)
         {
-            return this.View();
+            var post = this.postsService.GetPostById(postId);
+
+            if (post == null)
+            {
+                return this.BadRequest();
+            }
+
+            this.postsService.SetIsDeletedToTrue(post);
+
+            return this.RedirectToAction(nameof(this.All));
         }
 
         private CreatePostFormModel CreatePostFormModel(Property property)
