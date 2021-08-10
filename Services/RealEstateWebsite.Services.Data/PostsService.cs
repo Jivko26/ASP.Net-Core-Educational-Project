@@ -90,6 +90,30 @@
                     .ThenInclude(pr => pr.EstateAgent)
                     .FirstOrDefault(p => p.Id == postId);
 
+        public PostDetailsModel GetPostDetails(int postId)
+            => this.data.Posts
+            .Where(p => p.Id == postId)
+            .Include(p => p.Property)
+            .ThenInclude(pr => pr.EstateAgent)
+            .Select(p => new PostDetailsModel
+            {
+                Title = p.Title,
+                Description = p.Description,
+                PropertyPictureUrl = p.Property.PictureUrl,
+                PropertyInterior = p.Property.Interior,
+                PropertyLivingArea = p.Property.LivingArea,
+                PropertyPrice = p.Property.Price,
+                PropertyRooms = p.Property.Rooms,
+                PropertyFloor = p.Property.Floor,
+                PropertyTotalFloors = p.Property.TotalFloors,
+                PropertyYear = p.Property.Year,
+                PropertyEstateAgentId = p.Property.EstateAgent.Id,
+                PropertyEstateAgentName = p.Property.EstateAgent.Name,
+                PropertyEstateAgentPhone = p.Property.EstateAgent.Telephone,
+                PropertyEstateAgentWebsite = p.Property.EstateAgent.WebSiteUrl,
+            })
+            .FirstOrDefault();
+
         public void SetIsDeletedToTrue(Post post)
         {
             post.IsDeleted = true;

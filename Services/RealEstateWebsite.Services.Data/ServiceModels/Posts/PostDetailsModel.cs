@@ -12,8 +12,22 @@
 
         public decimal PropertyPrice { get; set; }
 
-        public int Rooms { get; set; }
+        public int PropertyRooms { get; set; }
 
         public int PropertyLivingArea { get; set; }
+
+        public int PropertyFloor { get; set; }
+
+        public int PropertyTotalFloors { get; set; }
+
+        public int? PropertyYear { get; set; }
+
+        public int PropertyEstateAgentId { get; set; }
+
+        public string PropertyEstateAgentName { get; set; }
+
+        public string PropertyEstateAgentPhone { get; set; }
+
+        public string PropertyEstateAgentWebsite { get; set; }
     }
 }

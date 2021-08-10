@@ -1,0 +1,52 @@
+﻿@model PostDetailsModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div>
+        <div class="form-group ">
+            <img src="@Model.PropertyPictureUrl" class="img-fluid property-img">
+        </div>
+    </div>
+    <div class="card mt-3" style="width: 67rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Model.PropertyPrice € per month</h6>
+            <div class="row">
+                <h6 class="card-text col-4">@Model.PropertyLivingArea m² livng area</h6>
+                <h6 class="card-text col-4">Rooms  -  @Model.PropertyRooms</h6>
+                <h6 class="card-text col-4">Interior - @Model.PropertyInterior</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3" style="width: 67rem;">
+        <div class="card-body">
+            <h5 class="card-title">Description</h5>
+            <div class="row">
+                <h6 class="card-text ml-3 mr-3">@Model.Description</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3" style="width: 67rem;">
+        <div class="card-body">
+            <h5 class="card-title">Year of construction - @Model.PropertyYear</h5>
+            <div class="row">
+                <h6 class="card-text ml-3 mr-3">Floor - @Model.PropertyFloor</h6>
+                <h6 class="card-text ml-3 mr-3">Total Floors - @Model.PropertyTotalFloors</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3" style="width: 67rem;">
+        <div class="card-body">
+            <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@Model.PropertyEstateAgentId" class="card-title">@Model.PropertyEstateAgentName</a>
+            <div class="row">
+                <h6 class="card-text ml-3 mr-3">Contact the estate agent - @Model.PropertyEstateAgentPhone</h6>
+                <a href="@Model.PropertyEstateAgentWebsite" class="card-text ml-3 mr-3">Visit their website - @Model.PropertyEstateAgentWebsite</a>
+                <a asp-controller="Viewings" asp-action="Plan" class="card-text ml-3 mr-3 btn btn-primary">Plan a viewing</a>
+            </div>
+        </div>
+    </div>
+</div>
+

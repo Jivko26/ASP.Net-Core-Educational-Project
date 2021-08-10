@@ -96,9 +96,9 @@
 
         public IActionResult Details(int postId)
         {
+            var detailsModel = this.postsService.GetPostDetails(postId);
 
-
-            return this.View();
+            return this.View(detailsModel);
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
