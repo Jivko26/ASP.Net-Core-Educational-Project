@@ -13,6 +13,10 @@
 
         IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int propertyId);
 
+        PostDetailsModel GetPostDetails(int postId);
+
+        void EditPost(Post post, string title, string description);
+
         void CreatePost(string title, string description, int estateAgentId, int propertyId);
 
         Post GetPostById(int postId);

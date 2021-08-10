@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Microsoft.EntityFrameworkCore;
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data.ServiceModels.Posts;
@@ -27,6 +28,14 @@
             };
 
             this.data.Posts.Add(post);
+            this.data.SaveChanges();
+        }
+
+        public void EditPost(Post post, string title, string description)
+        {
+            post.Title = title;
+            post.Description = description;
+
             this.data.SaveChanges();
         }
 
@@ -77,6 +86,8 @@
 
         public Post GetPostById(int postId)
             => this.data.Posts
+                    .Include(p => p.Property)
+                    .ThenInclude(pr => pr.EstateAgent)
                     .FirstOrDefault(p => p.Id == postId);
 
         public void SetIsDeletedToTrue(Post post)
