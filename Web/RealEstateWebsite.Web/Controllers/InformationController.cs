@@ -8,5 +8,10 @@
         {
             return this.View();
         }
+
+        public IActionResult SentViewing()
+        {
+            return this.View();
+        }
     }
 }
