@@ -99,6 +99,7 @@
             {
                 Title = p.Title,
                 Description = p.Description,
+                PropertyId = p.Property.Id,
                 PropertyPictureUrl = p.Property.PictureUrl,
                 PropertyInterior = p.Property.Interior,
                 PropertyLivingArea = p.Property.LivingArea,

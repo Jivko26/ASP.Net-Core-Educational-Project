@@ -6,6 +6,8 @@
 
         public string Description { get; set; }
 
+        public int PropertyId { get; set; }
+
         public string PropertyPictureUrl { get; set; }
 
         public string PropertyInterior { get; set; }

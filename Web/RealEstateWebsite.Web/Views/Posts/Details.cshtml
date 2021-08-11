@@ -44,7 +44,7 @@
             <div class="row">
                 <h6 class="card-text ml-3 mr-3">Contact the estate agent - @Model.PropertyEstateAgentPhone</h6>
                 <a href="@Model.PropertyEstateAgentWebsite" class="card-text ml-3 mr-3">Visit their website - @Model.PropertyEstateAgentWebsite</a>
-                <a asp-controller="Viewings" asp-action="Plan" class="card-text ml-3 mr-3 btn btn-primary">Plan a viewing</a>
+                <a asp-controller="Viewings" asp-action="Plan" asp-route-propertyId="@Model.PropertyId" class="card-text ml-3 mr-3 btn btn-primary">Plan a viewing</a>
             </div>
         </div>
     </div>
