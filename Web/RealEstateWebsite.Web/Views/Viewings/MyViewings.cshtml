@@ -1,0 +1,28 @@
+﻿@model List<AllViewingsServiceModel>
+
+@{
+    ViewBag.Title = "My Viewings";
+}
+
+@if (!Model.Any())
+{
+    <div class="container">
+        <h1 class="text-center">You have not arranged any viewings yet!</h1>
+    </div>
+}
+
+<div class="row">
+    @foreach (var viewing in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img class="card-img-top" src="@viewing.ViewingsPropertyImageUrl">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">@viewing.ViewingsPropertyType  @viewing.ViewingsPropertyAddress @viewing.ViewingsPropertyDistrict</h5>
+                    <h3 class="card-text text-center">Planned on - @viewing.CreatedOn</h3>
+                    <a asp-controller="Viewings" asp-action="Cancel" asp-route-id="@viewing.ViewingId" class="btn btn-outline-dark" >Cancel</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

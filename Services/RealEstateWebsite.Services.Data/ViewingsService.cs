@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Microsoft.EntityFrameworkCore;
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
+    using RealEstateWebsite.Services.Data.ServiceModels.Viewings;
 
     public class ViewingsService : IViewingsService
     {
@@ -15,6 +17,15 @@
         public ViewingsService(ApplicationDbContext data)
         {
             this.data = data;
+        }
+
+        public void CancelViewing(int viewingId)
+        {
+            var viewing = this.data.Viewings.Find(viewingId);
+
+            viewing.IsDeleted = true;
+
+            this.data.SaveChanges();
         }
 
         public void CreateViewing(
@@ -54,5 +65,23 @@
              => Enum.GetValues(typeof(HalfDay))
             .Cast<HalfDay>()
             .ToList();
+
+        public IEnumerable<AllViewingsServiceModel> GetMyViewings(string userId)
+            => this.data.Viewings
+            .Include(v => v.Property)
+            .ThenInclude(p => p.District)
+            .Where(v => v.AuthorId == userId && !v.IsDeleted)
+            .Select(v => new AllViewingsServiceModel
+            {
+                ViewingId = v.Id,
+                ViewingsPropertyImageUrl = v.Property.PictureUrl,
+                ViewingsPropertyAddress = v.Property.Address,
+                ViewingsPropertyType = v.Property.Type.ToString(),
+                ViewingsPropertyDistrict = v.Property.District.Name,
+                CreatedOn = v.CreatedOn,
+            })
+            .OrderByDescending(v => v.CreatedOn)
+            .ToList();
+
     }
 }

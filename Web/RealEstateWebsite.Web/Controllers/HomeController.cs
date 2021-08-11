@@ -10,11 +10,6 @@
 
         public IActionResult Index()
         {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                return this.RedirectToAction("All", "Posts");
-            }
-
             return this.View();
         }
 

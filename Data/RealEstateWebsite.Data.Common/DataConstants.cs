@@ -32,7 +32,7 @@
 
             public const int LastNameMaxLenght = 15;
 
-            public const int EmailAddressMaxLenght = 15;
+            public const int EmailAddressMaxLenght = 30;
 
             public const int PhoneMaxLenght = 15;
 

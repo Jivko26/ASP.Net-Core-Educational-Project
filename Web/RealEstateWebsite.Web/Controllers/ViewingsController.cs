@@ -53,9 +53,22 @@
             return this.RedirectToAction("SentViewing", "Information");
         }
 
+        [Authorize]
         public IActionResult MyViewings()
         {
-            return this.View();
+            var userId = this.User.Id();
+
+            var usersViewings = this.viewingsService.GetMyViewings(userId);
+
+            return this.View(usersViewings);
+        }
+
+        [Authorize]
+        public IActionResult Cancel(int id)
+        {
+            this.viewingsService.CancelViewing(id);
+
+            return this.RedirectToAction(nameof(this.MyViewings));
         }
 
         private PlanViewingFormModel PrepareFormModel(IEnumerable<RealEstateWebsite.Data.Models.Enum.DayOfWeek> dayOfWeeks, IEnumerable<HalfDay> halfDays)
