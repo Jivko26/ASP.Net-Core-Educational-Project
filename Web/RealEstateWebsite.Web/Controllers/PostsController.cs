@@ -39,9 +39,8 @@
 
         public IActionResult ByDistrict(int id)
         {
-            var propertyByDistrict = this.propertiesService.GetPropertyByDistrict(id);
 
-            var posts = this.postsService.GetAllPostsByDistrict(propertyByDistrict.Id);
+            var posts = this.postsService.GetAllPostsByDistrict(id);
 
             return this.View(posts);
         }

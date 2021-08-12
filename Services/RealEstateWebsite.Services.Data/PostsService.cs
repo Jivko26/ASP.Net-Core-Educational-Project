@@ -69,8 +69,10 @@
                     .OrderByDescending(ap => ap.CreatedOn)
                     .ToList();
 
-        public IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int propertyId)
+        public IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int districtId)
             => this.data.Posts
+                    .Include(p => p.Property)
+                    .Where(p => p.Property.DistcrictId == districtId && !p.IsDeleted)
                     .Select(p => new AllPostsServiceModel
                     {
                         Id = p.Id,
@@ -80,7 +82,6 @@
                         PropertyPrice = p.Property.Price,
                         PropertyId = p.Property.Id,
                     })
-                    .Where(ap => ap.PropertyId == propertyId)
                     .OrderByDescending(ap => ap.CreatedOn)
                     .ToList();
 

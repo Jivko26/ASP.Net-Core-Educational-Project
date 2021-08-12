@@ -11,7 +11,7 @@
 
         IEnumerable<AllPostsServiceModel> GetAllPostsByAgent(int agentId);
 
-        IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int propertyId);
+        IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int districtId);
 
         PostDetailsModel GetPostDetails(int postId);
 

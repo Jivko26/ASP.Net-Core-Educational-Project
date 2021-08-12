@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using Microsoft.EntityFrameworkCore;
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
@@ -110,14 +111,19 @@
                 .OrderByDescending(p => p.Price)
                 .ToList();
 
+        public Property GetPropertyByDistrict(int id)
+            => this.data.Properties
+            .FirstOrDefault(p => p.DistcrictId == id);
+
         public IEnumerable<PropertyType> GetPropertiesTypes()
              => Enum.GetValues(typeof(PropertyType))
             .Cast<PropertyType>()
             .ToList();
 
-        public Property GetPropertyByDistrict(int id)
+        public IEnumerable<Property> GetPropertiesByDistrict(int id)
             => this.data.Properties
-                   .FirstOrDefault(p => p.DistcrictId == id);
+                   .Where(p => p.DistcrictId == id && !p.IsDeleted)
+                   .ToList();
 
         public Property GetPropertyById(int propertyId)
              => this.data.Properties
@@ -130,5 +136,6 @@
 
             this.data.SaveChanges();
         }
+
     }
 }

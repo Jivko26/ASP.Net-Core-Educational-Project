@@ -11,31 +11,35 @@
     public class DistrictsController : Controller
     {
         private readonly IDistrictsService districtsService;
-        private readonly IMemoryCache cache;
+        private readonly IPropertiesService propertiesService;
 
-        public DistrictsController(IDistrictsService districtsService, IMemoryCache cache)
+        public DistrictsController(
+            IDistrictsService districtsService,
+            IPropertiesService propertiesService)
         {
             this.districtsService = districtsService;
-            this.cache = cache;
+            this.propertiesService = propertiesService;
         }
 
         public IActionResult All()
         {
-            const string allDistrictsCacheKey = "AllDistrictsCacheKey";
+            var allDistricts = this.districtsService.GetAllDistricts();
 
-            var allDistricts = this.cache.Get<List<AllDistrictsServiceModel>>(allDistrictsCacheKey);
+            var viewDistricts = this.SetDistrictsTotalPropertiesCount(allDistricts);
 
-            if (allDistricts == null)
+            return this.View(viewDistricts);
+        }
+
+        private IEnumerable<AllDistrictsServiceModel> SetDistrictsTotalPropertiesCount(IEnumerable<AllDistrictsServiceModel> allDistricts)
+        {
+            foreach (var district in allDistricts)
             {
-                allDistricts = this.districtsService
-                   .GetAllDistricts()
-                   .AsEnumerable()
-                   .ToList();
+                var properties = this.propertiesService.GetPropertiesByDistrict(district.Id);
 
-                this.cache.Set(allDistrictsCacheKey, allDistricts);
+                district.TotalProperties = properties.Count();
             }
 
-            return this.View(allDistricts);
+            return allDistricts;
         }
     }
 }

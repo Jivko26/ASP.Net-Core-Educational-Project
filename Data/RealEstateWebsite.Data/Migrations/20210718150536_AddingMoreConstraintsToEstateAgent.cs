@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace RealEstateWebsite.Data.Migrations
+﻿namespace RealEstateWebsite.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddingMoreConstraintsToEstateAgent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

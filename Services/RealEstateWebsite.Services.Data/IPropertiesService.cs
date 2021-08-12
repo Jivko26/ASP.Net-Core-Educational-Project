@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
 
-    using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Data.Models;
+    using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data.ServiceModels.Properties;
 
     public interface IPropertiesService
@@ -42,9 +42,11 @@
             PropertyType propertyType,
             int? year);
 
+        Property GetPropertyByDistrict(int id);
+
         Property GetPropertyById(int propertyId);
 
-        Property GetPropertyByDistrict(int id);
+        IEnumerable<Property> GetPropertiesByDistrict(int id);
 
         void SetIsDeletedToTrue(Property property);
     }

@@ -24,11 +24,8 @@
                 {
                     Id = d.Id,
                     Name = d.Name,
-                    TotalProperties = this.data.Properties
-                    .Where(p => p.DistcrictId == d.Id && !p.IsDeleted)
-                    .Count(),
                 })
-                .OrderByDescending(t => t.TotalProperties)
+                .OrderBy(t => t.Name)
                 .ToList();
 
     }

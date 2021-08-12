@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace RealEstateWebsite.Data.Migrations
+﻿namespace RealEstateWebsite.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddingTableDistrictAndEstateAgent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

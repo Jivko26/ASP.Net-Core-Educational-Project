@@ -28,9 +28,9 @@
 
         public class View
         {
-            public const int FirstNameMaxLenght = 10;
+            public const int FirstNameMaxLenght = 30;
 
-            public const int LastNameMaxLenght = 15;
+            public const int LastNameMaxLenght = 30;
 
             public const int EmailAddressMaxLenght = 30;
 
