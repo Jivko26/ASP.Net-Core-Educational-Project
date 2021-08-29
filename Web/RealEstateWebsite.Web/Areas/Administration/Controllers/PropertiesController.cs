@@ -10,7 +10,7 @@
 
     public class PropertiesController : AdministrationController
     {
-
+        private const string NonExistingDistrict = "District does not exist.";
         private readonly IPropertiesService propertiesService;
         private readonly IDistrictsService districtsService;
         private readonly IAgenciesService agenciesService;
@@ -50,7 +50,7 @@
 
             if (!this.districtsService.DistrictExists(property.DistrictId))
             {
-                this.ModelState.AddModelError(nameof(property.DistrictId), "District does not exist.");
+                this.ModelState.AddModelError(nameof(property.DistrictId), NonExistingDistrict);
             }
 
             if (!this.ModelState.IsValid)
@@ -114,7 +114,7 @@
 
             if (!this.districtsService.DistrictExists(property.DistrictId))
             {
-                this.ModelState.AddModelError(nameof(property.DistrictId), "District does not exist.");
+                this.ModelState.AddModelError(nameof(property.DistrictId), NonExistingDistrict);
             }
 
             if (!this.ModelState.IsValid)
