@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data.ServiceModels.Viewings;
+    using RealEstateWebsite.Web.ViewModels.Viewings;
 
     public interface IViewingsService
     {
@@ -12,16 +12,7 @@
 
         public IEnumerable<HalfDay> GetHalfDays();
 
-        void CreateViewing(
-            string firstName,
-            string lastName,
-            string email,
-            string phone,
-            string description,
-            DayOfWeek dayOfWeek,
-            HalfDay halfDay,
-            string userId,
-            int propertyId);
+        void CreateViewing(string userId, int propertyId, PlanViewingFormModel viewingFormModel);
 
         IEnumerable<AllViewingsServiceModel> GetMyViewings(string userId);
 

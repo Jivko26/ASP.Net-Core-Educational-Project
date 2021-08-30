@@ -7,6 +7,7 @@
     using RealEstateWebsite.Data.Models.Enum;
     using System.Linq;
     using System;
+    using RealEstateWebsite.Web.ViewModels.Viewings;
 
     public class ViewingsServiceTest
     {
@@ -28,17 +29,20 @@
 
             var viewingsService = new ViewingsService(data);
 
+            var viewingFormModel = new PlanViewingFormModel
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                EmailAddress = email,
+                Phone = phone,
+                Description = description,
+                Day = dayOfWeek,
+                HalfDay = halfDay,
+            };
+
             //Act
 
-            viewingsService.CreateViewing(firstName,
-             lastName,
-             email,
-             phone,
-             description,
-             dayOfWeek,
-             halfDay,
-             userId,
-             propertyId);
+            viewingsService.CreateViewing(userId, propertyId, viewingFormModel);
 
             var result = data.Viewings.Count();
 
@@ -65,17 +69,20 @@
 
             var viewingsService = new ViewingsService(data);
 
+            var viewingFormModel = new PlanViewingFormModel
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                EmailAddress = email,
+                Phone = phone,
+                Description = description,
+                Day = dayOfWeek,
+                HalfDay = halfDay,
+            };
+
             //Act
 
-            viewingsService.CreateViewing(firstName,
-             lastName,
-             email,
-             phone,
-             description,
-             dayOfWeek,
-             halfDay,
-             userId,
-             propertyId);
+            viewingsService.CreateViewing(userId, propertyId, viewingFormModel);
 
             var result = data.Viewings.First();
 
@@ -131,6 +138,17 @@
 
             var viewingsService = new ViewingsService(data);
 
+            var viewingFormModel = new PlanViewingFormModel
+            {
+                FirstName = "dnes",
+                LastName = "jorkov",
+                EmailAddress = "j@j.com",
+                Phone = "1213",
+                Description = "ending",
+                Day = RealEstateWebsite.Data.Models.Enum.DayOfWeek.Friday,
+                HalfDay = HalfDay.InTheAfternoon,
+            };
+
             //Act
 
             data.Users.Add(new ApplicationUser
@@ -160,15 +178,7 @@
 
             data.SaveChanges();
 
-            viewingsService.CreateViewing("dnes",
-             "jorkov",
-             "j@j.com",
-             "1213",
-             "ending",
-             RealEstateWebsite.Data.Models.Enum.DayOfWeek.Friday,
-             HalfDay.InTheAfternoon,
-             userId,
-             1);
+            viewingsService.CreateViewing(userId, 1, viewingFormModel);
 
             var result = viewingsService.GetMyViewings(userId).Count();
 

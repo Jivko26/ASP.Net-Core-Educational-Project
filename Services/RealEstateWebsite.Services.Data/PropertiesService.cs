@@ -18,7 +18,20 @@
         public PropertiesService(ApplicationDbContext data)
             => this.data = data;
 
-        public void CreateProperty()
+        public void CreateProperty(
+            int id,
+            string interior,
+            string address,
+            string pictureUrl,
+            int livingArea,
+            int rooms,
+            int floor,
+            int totalFloors,
+            decimal price,
+            int districtId,
+            int estateAgentId,
+            PropertyType propertyType,
+            int? year)
         {
             var property = new Property
             {

@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Data\RealEstateWebsite.Data.Common\RealEstateWebsite.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\RealEstateWebsite.Data.Models\RealEstateWebsite.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\RealEstateWebsite.Data\RealEstateWebsite.Data.csproj" />
+    <ProjectReference Include="..\..\Web\RealEstateWebsite.Web.ViewModels\RealEstateWebsite.Web.ViewModels.csproj" />
     <ProjectReference Include="..\RealEstateWebsite.Services.Mapping\RealEstateWebsite.Services.Mapping.csproj" />
   </ItemGroup>
 

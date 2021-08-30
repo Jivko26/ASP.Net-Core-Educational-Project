@@ -9,6 +9,7 @@
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data.ServiceModels.Viewings;
+    using RealEstateWebsite.Web.ViewModels.Viewings;
 
     public class ViewingsService : IViewingsService
     {
@@ -28,26 +29,17 @@
             this.data.SaveChanges();
         }
 
-        public void CreateViewing(
-            string firstName,
-            string lastName,
-            string email,
-            string phone,
-            string description,
-            RealEstateWebsite.Data.Models.Enum.DayOfWeek dayOfWeek,
-            HalfDay halfDay,
-            string userId,
-            int propertyId)
+        public void CreateViewing(string userId, int propertyId, PlanViewingFormModel viewingFormModel)
         {
             var viewing = new Viewing
             {
-                FirsName = firstName,
-                LastName = lastName,
-                EmailAddress = email,
-                PhoneNumber = phone,
-                Description = description,
-                DayOfWeek = dayOfWeek,
-                HalfDay = halfDay,
+                FirsName = viewingFormModel.FirstName,
+                LastName = viewingFormModel.LastName,
+                EmailAddress = viewingFormModel.EmailAddress,
+                PhoneNumber = viewingFormModel.Phone,
+                Description = viewingFormModel.Description,
+                DayOfWeek = viewingFormModel.Day,
+                HalfDay = viewingFormModel.HalfDay,
                 AuthorId = userId,
                 PropertyId = propertyId,
             };

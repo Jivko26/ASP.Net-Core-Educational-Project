@@ -39,16 +39,7 @@
                 return this.View(this.PrepareFormModel(daysOfWeek, halfDays));
             }
 
-            this.viewingsService.CreateViewing(
-                planViewingFormModel.FirstName,
-                planViewingFormModel.LastName,
-                planViewingFormModel.EmailAddress,
-                planViewingFormModel.Phone,
-                planViewingFormModel.Description,
-                planViewingFormModel.Day,
-                planViewingFormModel.HalfDay,
-                userId,
-                propertyId);
+            this.viewingsService.CreateViewing(userId, propertyId, planViewingFormModel);
 
             return this.RedirectToAction("SentViewing", "Information");
         }
