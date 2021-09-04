@@ -5,6 +5,7 @@
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data.ServiceModels.Properties;
+    using RealEstateWebsite.Web.ViewModels.Administration.Properties;
 
     public interface IPropertiesService
     {
@@ -12,35 +13,9 @@
 
         IEnumerable<PropertyType> GetPropertiesTypes();
 
-        void CreateProperty(
-            int id,
-            string interior,
-            string address,
-            string pictureUrl,
-            int livingArea,
-            int rooms,
-            int floor,
-            int totalFloors,
-            decimal price,
-            int districtId,
-            int estateAgentId,
-            PropertyType propertyType,
-            int? year);
+        void CreateProperty(PropertyFormModel propertyFormModel);
 
-        void Edit(
-            int id,
-            string interior,
-            string address,
-            string pictureUrl,
-            int livingArea,
-            int rooms,
-            int floor,
-            int totalFloors,
-            decimal price,
-            int districtId,
-            int estateAgentId,
-            PropertyType propertyType,
-            int? year);
+        void Edit(PropertyFormModel propertyFormModel);
 
         Property GetPropertyByDistrict(int id);
 

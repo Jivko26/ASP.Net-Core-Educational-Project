@@ -1,4 +1,4 @@
-﻿namespace RealEstateWebsite.Web.Areas.Administration.Models
+﻿namespace RealEstateWebsite.Web.ViewModels.Administration.Properties
 {
     public class PropertysDistrictViewModel
     {

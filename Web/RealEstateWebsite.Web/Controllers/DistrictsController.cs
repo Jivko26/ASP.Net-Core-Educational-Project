@@ -23,6 +23,7 @@
 
         public IActionResult All()
         {
+
             var allDistricts = this.districtsService.GetAllDistricts();
 
             var viewDistricts = this.SetDistrictsTotalPropertiesCount(allDistricts);

@@ -1,13 +1,12 @@
-﻿namespace RealEstateWebsite.Web.Areas.Administration.Models
+﻿namespace RealEstateWebsite.Web.ViewModels.Administration.Properties
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using RealEstateWebsite.Data.Models.Enum;
 
     using static RealEstateWebsite.Data.Common.DataConstants.Property;
 
-    public class AddPropertyFormModel
+    public class PropertyFormModel
     {
         public int Id { get; set; }
 
@@ -55,11 +54,5 @@
 
         [Required]
         public PropertyType Type { get; set; }
-
-        public IEnumerable<PropertysDistrictViewModel> Districts { get; set; }
-
-        public IEnumerable<PropertysEstateAgentViewModel> EstateAgents { get; set; }
-
-        public IEnumerable<PropertyType> Types { get; set; }
     }
 }

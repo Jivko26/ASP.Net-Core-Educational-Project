@@ -9,6 +9,7 @@
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data.ServiceModels.Properties;
+    using RealEstateWebsite.Web.ViewModels.Administration.Properties;
 
     public class PropertiesService : IPropertiesService
     {
@@ -18,76 +19,50 @@
         public PropertiesService(ApplicationDbContext data)
             => this.data = data;
 
-        public void CreateProperty(
-            int id,
-            string interior,
-            string address,
-            string pictureUrl,
-            int livingArea,
-            int rooms,
-            int floor,
-            int totalFloors,
-            decimal price,
-            int districtId,
-            int estateAgentId,
-            PropertyType propertyType,
-            int? year)
+        public void CreateProperty(PropertyFormModel propertyFormModel)
         {
             var property = new Property
             {
-                Id = id,
-                Interior = interior,
-                Address = address,
-                PictureUrl = pictureUrl,
-                LivingArea = livingArea,
-                Rooms = rooms,
-                Floor = floor,
-                TotalFloors = totalFloors,
-                Year = year,
-                Price = price,
-                Type = propertyType,
-                DistcrictId = districtId,
-                EstateAgentId = estateAgentId,
+                Id = propertyFormModel.Id,
+                Interior = propertyFormModel.Interior,
+                Address = propertyFormModel.Address,
+                PictureUrl = propertyFormModel.PictureUrl,
+                LivingArea = propertyFormModel.LivingArea,
+                Rooms = propertyFormModel.Rooms,
+                Floor = propertyFormModel.Floor,
+                TotalFloors = propertyFormModel.TotalFloors,
+                Year = propertyFormModel.Year,
+                Price = propertyFormModel.Price,
+                Type = propertyFormModel.Type,
+                DistcrictId = propertyFormModel.DistrictId,
+                EstateAgentId = propertyFormModel.EstateAgentId,
             };
 
             this.data.Properties.Add(property);
             this.data.SaveChanges();
         }
 
-        public void Edit(
-            int id,
-            string interior,
-            string address,
-            string pictureUrl,
-            int livingArea,
-            int rooms,
-            int floor,
-            int totalFloors,
-            decimal price,
-            int districtId,
-            int estateAgentId,
-            PropertyType propertyType,
-            int? year)
+        public void Edit(PropertyFormModel propertyFormModel)
         {
-            var property = this.data.Properties.FirstOrDefault(p => p.Id == id);
+            var property = this.data.Properties.FirstOrDefault(p => p.Id == propertyFormModel.Id);
 
             if (property == null)
             {
                 return;
             }
 
-            property.Interior = interior;
-            property.Address = address;
-            property.PictureUrl = pictureUrl;
-            property.LivingArea = livingArea;
-            property.Rooms = rooms;
-            property.Floor = floor;
-            property.TotalFloors = totalFloors;
-            property.Price = price;
-            property.DistcrictId = districtId;
-            property.EstateAgentId = estateAgentId;
-            property.Type = propertyType;
-            property.Year = year;
+            property.Interior = propertyFormModel.Interior;
+            property.Address = propertyFormModel.Address;
+            property.PictureUrl = propertyFormModel.PictureUrl;
+            property.LivingArea = propertyFormModel.LivingArea;
+            property.Rooms = propertyFormModel.Rooms;
+            property.Floor = propertyFormModel.Floor;
+            property.TotalFloors = propertyFormModel.TotalFloors;
+            property.Price = propertyFormModel.Price;
+            property.DistcrictId = propertyFormModel.DistrictId;
+            property.EstateAgentId = propertyFormModel.EstateAgentId;
+            property.Type = propertyFormModel.Type;
+            property.Year = propertyFormModel.Year;
 
             this.data.SaveChanges();
 
