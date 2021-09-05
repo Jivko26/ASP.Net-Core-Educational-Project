@@ -4,7 +4,6 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
-    using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.ViewModels.Administration.Properties;
 
@@ -68,36 +67,20 @@
 
         public IActionResult Edit(int id)
         {
+            var property = this.propertiesService.GetPropertyById(id);
 
-            //var property = this.propertiesService.GetPropertyById(id);
+            var addPropertyForm = this.propertiesService.PreparePropertyFormModel(property);
 
-            //var addPropertyForm = this.PreparePropertyFormModel(
-            //    property.Id,
-            //    property.Interior,
-            //    property.Address,
-            //    property.PictureUrl,
-            //    property.LivingArea,
-            //    property.Rooms,
-            //    property.Floor,
-            //    property.TotalFloors,
-            //    property.Price,
-            //    property.DistcrictId,
-            //    property.EstateAgentId,
-            //    property.Type,
-            //    property.Year);
+            addPropertyForm.Districts = this.GetPropertyDistricts();
+            addPropertyForm.EstateAgents = this.GetPropertyEstateAgents();
+            addPropertyForm.Types = this.propertiesService.GetPropertiesTypes();
 
-            //addPropertyForm.Districts = this.GetPropertyDistricts();
-            //addPropertyForm.EstateAgents = this.GetPropertyEstateAgents();
-            //addPropertyForm.Types = this.propertiesService.GetPropertiesTypes();
-
-            return this.View();
+            return this.View(addPropertyForm);
         }
 
         [HttpPost]
         public IActionResult Edit(int id, AddPropertyFormModel property)
         {
-            // TODO: Extract the validation for Add and Edit method in private methods or services plus add more validations
-
             if (!this.districtsService.DistrictExists(property.PropertyFormModel.DistrictId))
             {
                 this.ModelState.AddModelError(nameof(property.PropertyFormModel.DistrictId), NonExistingDistrict);
@@ -112,20 +95,7 @@
                 return this.View(property);
             }
 
-            //this.propertiesService.Edit(
-            //    property.Id,
-            //    property.Interior,
-            //    property.Address,
-            //    property.PictureUrl,
-            //    property.LivingArea,
-            //    property.Rooms,
-            //    property.Floor,
-            //    property.TotalFloors,
-            //    property.Price,
-            //    property.DistrictId,
-            //    property.EstateAgentId,
-            //    property.Type,
-            //    property.Year);
+            this.propertiesService.Edit(id, property.PropertyFormModel);
 
             return this.RedirectToAction(nameof(this.All));
         }
@@ -143,39 +113,6 @@
 
             return this.RedirectToAction(nameof(this.All));
         }
-
-        //private AddPropertyFormModel PreparePropertyFormModel(
-        //    int id,
-        //    string interior,
-        //    string address,
-        //    string pictureUrl,
-        //    int livingArea,
-        //    int rooms,
-        //    int floor,
-        //    int totalFloors,
-        //    decimal price,
-        //    int districtId,
-        //    int estateAgentId,
-        //    PropertyType propertyType,
-        //    int? year)
-        //{
-        //    return new AddPropertyFormModel
-        //    {
-        //        Id = id,
-        //        Interior = interior,
-        //        Address = address,
-        //        PictureUrl = pictureUrl,
-        //        LivingArea = livingArea,
-        //        Rooms = rooms,
-        //        Floor = floor,
-        //        TotalFloors = totalFloors,
-        //        Price = price,
-        //        DistrictId = districtId,
-        //        EstateAgentId = estateAgentId,
-        //        Type = propertyType,
-        //        Year = year,
-        //    };
-        //}
 
         private IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()
             => this.districtsService.GetAllDistricts()

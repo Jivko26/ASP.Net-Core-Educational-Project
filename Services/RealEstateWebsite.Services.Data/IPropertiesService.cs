@@ -15,11 +15,13 @@
 
         void CreateProperty(PropertyFormModel propertyFormModel);
 
-        void Edit(PropertyFormModel propertyFormModel);
+        void Edit(int id, PropertyFormModel propertyFormModel);
 
         Property GetPropertyByDistrict(int id);
 
         Property GetPropertyById(int propertyId);
+
+        AddPropertyFormModel PreparePropertyFormModel(Property property);
 
         IEnumerable<Property> GetPropertiesByDistrict(int id);
 

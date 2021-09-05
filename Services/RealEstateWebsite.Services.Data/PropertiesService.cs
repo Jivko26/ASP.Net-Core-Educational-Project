@@ -42,9 +42,9 @@
             this.data.SaveChanges();
         }
 
-        public void Edit(PropertyFormModel propertyFormModel)
+        public void Edit(int id, PropertyFormModel propertyFormModel)
         {
-            var property = this.data.Properties.FirstOrDefault(p => p.Id == propertyFormModel.Id);
+            var property = this.data.Properties.FirstOrDefault(p => p.Id == id);
 
             if (property == null)
             {
@@ -65,7 +65,29 @@
             property.Year = propertyFormModel.Year;
 
             this.data.SaveChanges();
+        }
 
+        public AddPropertyFormModel PreparePropertyFormModel(Property property)
+        {
+            return new AddPropertyFormModel
+            {
+                PropertyFormModel = new PropertyFormModel
+                {
+                    Id = property.Id,
+                    Interior = property.Interior,
+                    Address = property.Address,
+                    PictureUrl = property.PictureUrl,
+                    LivingArea = property.LivingArea,
+                    Rooms = property.Rooms,
+                    Floor = property.Floor,
+                    TotalFloors = property.TotalFloors,
+                    Price = property.Price,
+                    DistrictId = property.DistcrictId,
+                    EstateAgentId = property.EstateAgentId,
+                    Type = property.Type,
+                    Year = property.Year,
+                },
+            };
         }
 
         public IEnumerable<AllPropertiesServiceModel> GetAllProperties()
@@ -111,6 +133,5 @@
 
             this.data.SaveChanges();
         }
-
     }
 }
