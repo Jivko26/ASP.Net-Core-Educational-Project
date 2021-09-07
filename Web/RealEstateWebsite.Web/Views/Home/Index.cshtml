@@ -3,7 +3,41 @@
     this.ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<form class="row g-4 needs-validation" novalidate method="get">
+    <div class="col-md-2 mt-3">
+        <label for="validationDefault04">Property Type</label>
+        <select form="validationDefault04" class="form-control">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="col-md-2 mt-3">
+        <label for="validationDefault04">City</label>
+        <select form="validationDefault04" class="form-control">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="col-md-2 mt-3">
+        <label for="validationDefault04">Estate Agent</label>
+        <select form="validationDefault04" class="form-control">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="col-md-2 mt-3">
+        <label for="validationDefault04">Max Price</label>
+        <select form="validationDefault04" class="form-control">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="col-md-4 mt-5">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+<div class="jumbotron mt-5">
     <h1>ASAP Rentals</h1>
     <p class="lead">ASAP Rentals is the best place to find accomodation in the Netherlands.</p>
     <p><a asp-controller="Posts" asp-action="All" class="btn btn-primary btn-lg">Find your new home now! &raquo;</a></p>

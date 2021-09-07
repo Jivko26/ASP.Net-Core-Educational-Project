@@ -3,33 +3,24 @@
     ViewBag.Title = "Our Agencies";
 }
 
+
 <div class="container">
-    <h1 style="margin: 2%; text-align: center;">Rental agents in the Netherlands for rental properties and apartments</h1>
-    <div style="padding: 5%;">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col" class="text-center">Name</th>
-                    <th scope="col" class="text-center">Address</th>
-                    <th scope="col" class="text-center">Description</th>
-                    <th scope="col" class="text-center">Contacts</th>
-                    <th scope="col" class="text-center">Properties in Netherlands</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var agent in Model)
-                {
-                    <tr>
-                        <th scope="row" class="text-center">
-                            <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@agent.AgentId">@agent.Name</a>
-                        </th>
-                        <td class="text-center">@agent.Address</td>
-                        <td class="text-center">@agent.Description</td>
-                        <td>@agent.Email, @agent.PhoneNumber</td>
-                        <td class="text-center">@agent.TotalPropertiesCount</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    @foreach (var agent in Model)
+    {
+        <div class="card mt-3 text-center">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@agent.Name</h5>
+                <p class="card-text">@agent.Description</p>
+                <a href="#" class="btn btn-primary">See more</a>
+            </div>
+            <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@agent.AgentId" class="card-footer text-muted">
+                @agent.TotalPropertiesCount Rental Offers
+            </a>
+        </div>
+    }
 </div>
+
+

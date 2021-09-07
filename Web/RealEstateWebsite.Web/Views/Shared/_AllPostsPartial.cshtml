@@ -5,49 +5,23 @@
     ViewBag.Title = "All Posts";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Agency
-            </th>
-            <th>
-                Created On
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var post in Model)
+<div class="container">
+    @foreach (var post in Model)
+    {
+    <div class="card mt-3 text-center">
+        <div class="card-header">
+            @post.PropertyEstateAgent
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@post.Title</h5>
+            <p class="card-text">@post.PropertyPrice € Per month</p>
+            <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-primary">Details</a>
+        </div>
+        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-            <tr>
-                <td>
-                    @post.Title
-                </td>
-                <td>
-                    @post.PropertyPrice
-                </td>
-                <td>
-                    @post.PropertyEstateAgent
-                </td>
-                <td>
-                    @post.CreatedOn
-                </td>
-                <td>
-                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                    {
-                        <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@post.Id">Edit</a>
-                        <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@post.Id">Delete</a>
-                    }
-
-                    <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id">Details</a>
-                </td>
-            </tr>
+            <a asp-controller="Posts" asp-action="Edit" asp-route-postId="@post.Id" class="card-footer text-muted">Edit</a>
+            <a asp-controller="Posts" asp-action="Delete" asp-route-postId="@post.Id" class="card-footer text-muted">Delete</a>
         }
-    </tbody>
-</table>
+    </div>
+    }
+</div>
