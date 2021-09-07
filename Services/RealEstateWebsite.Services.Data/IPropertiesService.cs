@@ -25,6 +25,10 @@
 
         IEnumerable<Property> GetPropertiesByDistrict(int id);
 
+        IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts();
+
+        IEnumerable<PropertysEstateAgentViewModel> GetPropertyEstateAgents();
+
         void SetIsDeletedToTrue(Property property);
     }
 }

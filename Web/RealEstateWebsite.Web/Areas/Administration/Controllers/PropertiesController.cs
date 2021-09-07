@@ -33,13 +33,12 @@
 
         public IActionResult Add()
         {
-
             return this.View(new AddPropertyFormModel
             {
                 Types = this.propertiesService.GetPropertiesTypes(),
-                Districts = this.GetPropertyDistricts()
+                Districts = this.propertiesService.GetPropertyDistricts()
                             .ToList(),
-                EstateAgents = this.GetPropertyEstateAgents(),
+                EstateAgents = this.propertiesService.GetPropertyEstateAgents(),
             });
         }
 
@@ -54,8 +53,8 @@
             if (!this.ModelState.IsValid)
             {
                 property.Types = this.propertiesService.GetPropertiesTypes();
-                property.Districts = this.GetPropertyDistricts();
-                property.EstateAgents = this.GetPropertyEstateAgents();
+                property.Districts = this.propertiesService.GetPropertyDistricts();
+                property.EstateAgents = this.propertiesService.GetPropertyEstateAgents();
 
                 return this.View(property);
             }
@@ -71,8 +70,8 @@
 
             var addPropertyForm = this.propertiesService.PreparePropertyFormModel(property);
 
-            addPropertyForm.Districts = this.GetPropertyDistricts();
-            addPropertyForm.EstateAgents = this.GetPropertyEstateAgents();
+            addPropertyForm.Districts = this.propertiesService.GetPropertyDistricts();
+            addPropertyForm.EstateAgents = this.propertiesService.GetPropertyEstateAgents();
             addPropertyForm.Types = this.propertiesService.GetPropertiesTypes();
 
             return this.View(addPropertyForm);
@@ -89,8 +88,8 @@
             if (!this.ModelState.IsValid)
             {
                 property.Types = this.propertiesService.GetPropertiesTypes();
-                property.Districts = this.GetPropertyDistricts();
-                property.EstateAgents = this.GetPropertyEstateAgents();
+                property.Districts = this.propertiesService.GetPropertyDistricts();
+                property.EstateAgents = this.propertiesService.GetPropertyEstateAgents();
 
                 return this.View(property);
             }
@@ -113,23 +112,5 @@
 
             return this.RedirectToAction(nameof(this.All));
         }
-
-        private IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()
-            => this.districtsService.GetAllDistricts()
-                            .Select(d => new PropertysDistrictViewModel
-                            {
-                                Id = d.Id,
-                                Name = d.Name,
-                            }).ToList();
-
-        private IEnumerable<PropertysEstateAgentViewModel> GetPropertyEstateAgents()
-           => this.agenciesService.GetAllAgencies()
-                            .Select(a => new PropertysEstateAgentViewModel
-                            {
-                                Id = a.AgentId,
-                                Name = a.Name,
-                            })
-                            .ToList();
     }
-
 }

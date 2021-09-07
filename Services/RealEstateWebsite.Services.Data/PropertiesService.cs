@@ -15,9 +15,15 @@
     {
 
         private readonly ApplicationDbContext data;
+        private readonly IAgenciesService agenciesService;
+        private readonly IDistrictsService districtsService;
 
-        public PropertiesService(ApplicationDbContext data)
-            => this.data = data;
+        public PropertiesService(ApplicationDbContext data, IAgenciesService agenciesService, IDistrictsService districtsService)
+        {
+            this.data = data;
+            this.agenciesService = agenciesService;
+            this.districtsService = districtsService;
+        }
 
         public void CreateProperty(PropertyFormModel propertyFormModel)
         {
@@ -121,6 +127,23 @@
             => this.data.Properties
                    .Where(p => p.DistcrictId == id && !p.IsDeleted)
                    .ToList();
+
+        public IEnumerable<PropertysDistrictViewModel> GetPropertyDistricts()
+            => this.districtsService.GetAllDistricts()
+                            .Select(d => new PropertysDistrictViewModel
+                            {
+                                Id = d.Id,
+                                Name = d.Name,
+                            }).ToList();
+
+        public IEnumerable<PropertysEstateAgentViewModel> GetPropertyEstateAgents()
+           => this.agenciesService.GetAllAgencies()
+                            .Select(a => new PropertysEstateAgentViewModel
+                            {
+                                Id = a.AgentId,
+                                Name = a.Name,
+                            })
+                            .ToList();
 
         public Property GetPropertyById(int propertyId)
              => this.data.Properties
