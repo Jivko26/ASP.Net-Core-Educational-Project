@@ -4,6 +4,7 @@
 
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data.ServiceModels.Posts;
+    using RealEstateWebsite.Web.ViewModels.Home;
 
     public interface IPostsService
     {
@@ -12,6 +13,8 @@
         IEnumerable<AllPostsServiceModel> GetAllPostsByAgent(int agentId);
 
         IEnumerable<AllPostsServiceModel> GetAllPostsByDistrict(int districtId);
+
+        IEnumerable<AllPostsServiceModel> GetAllPostsBySearch(IndexSearchViewModel searchTerms);
 
         PostDetailsModel GetPostDetails(int postId);
 

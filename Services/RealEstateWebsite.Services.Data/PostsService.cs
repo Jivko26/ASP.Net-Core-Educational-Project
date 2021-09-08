@@ -7,6 +7,7 @@
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data.ServiceModels.Posts;
+    using RealEstateWebsite.Web.ViewModels.Home;
 
     public class PostsService : IPostsService
     {
@@ -40,7 +41,8 @@
         }
 
         public IEnumerable<AllPostsServiceModel> GetAllPosts()
-            => this.data.Posts
+        {
+            var posts = this.data.Posts
                     .Where(p => !p.IsDeleted)
                     .Select(p => new AllPostsServiceModel
                     {
@@ -54,6 +56,9 @@
                     })
                     .OrderByDescending(ap => ap.CreatedOn)
                     .ToList();
+
+            return posts;
+        }
 
         public IEnumerable<AllPostsServiceModel> GetAllPostsByAgent(int agentId)
             => this.data.Posts
@@ -81,6 +86,26 @@
                         PropertyEstateAgent = p.EstateAgent.Name,
                         PropertyPrice = p.Property.Price,
                         PropertyId = p.Property.Id,
+                    })
+                    .OrderByDescending(ap => ap.CreatedOn)
+                    .ToList();
+
+        public IEnumerable<AllPostsServiceModel> GetAllPostsBySearch(IndexSearchViewModel searchTerms)
+            => this.data.Posts
+                    .Include(p => p.Property)
+                    .ThenInclude(pr => pr.District)
+                    .Where(p => !p.IsDeleted && p.Property.Type == searchTerms.Type &&
+                           p.Property.DistcrictId == searchTerms.DistrictId &&
+                           p.Property.Price <= searchTerms.MaxPrice)
+                    .Select(p => new AllPostsServiceModel
+                    {
+                        Id = p.Id,
+                        Title = p.Title,
+                        CreatedOn = p.CreatedOn,
+                        PropertyEstateAgent = p.EstateAgent.Name,
+                        PropertyPrice = p.Property.Price,
+                        PropertyId = p.Property.Id,
+                        EstateAgentId = p.EstateAgentId,
                     })
                     .OrderByDescending(ap => ap.CreatedOn)
                     .ToList();

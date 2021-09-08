@@ -1,0 +1,21 @@
+﻿@model List<AllPostsServiceModel>
+
+@{
+    ViewBag.Title = "All Posts";
+}
+
+@if (!Model.Any())
+{
+    <div class="container">
+        <h1 class="text-center">There are currently no offers that match your requirements!</h1>
+    </div>
+}
+
+@if (Model.Any())
+{
+    <div class="container">
+        <h1 class="text-center">All Posts that match your requirements</h1>
+    </div>
+}
+
+<partial name="_AllPostsPartial" model="@Model" />

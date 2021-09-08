@@ -1,39 +1,37 @@
 ﻿@using RealEstateWebsite.Common
+@model IndexSearchViewModel
 @{
     this.ViewBag.Title = "Home Page";
 }
 
-<form class="row g-4 needs-validation" novalidate method="get">
+<form asp-controller="Posts" asp-action="BySearch" class="row g-4 needs-validation" method="get">
     <div class="col-md-2 mt-3">
-        <label for="validationDefault04">Property Type</label>
-        <select form="validationDefault04" class="form-control">
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
+        <label asp-for="Type"></label>
+        <select asp-for="Type" class="form-control">
+            @foreach (var type in Model.Types)
+            {
+                <option value="@type.ToString()">@type.ToString()</option>
+            }
         </select>
+        <span asp-validation-for="Type" class="small text-danger"></span>
     </div>
     <div class="col-md-2 mt-3">
-        <label for="validationDefault04">City</label>
-        <select form="validationDefault04" class="form-control">
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
+        <label asp-for="DistrictId"></label>
+        <select asp-for="DistrictId" class="form-control">
+            @foreach (var district in Model.Districts)
+            {
+                <option value="@district.Id">@district.Name</option>
+            }
         </select>
+        <span asp-validation-for="DistrictId" class="small text-danger"></span>
     </div>
     <div class="col-md-2 mt-3">
-        <label for="validationDefault04">Estate Agent</label>
-        <select form="validationDefault04" class="form-control">
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-        </select>
-    </div>
-    <div class="col-md-2 mt-3">
-        <label for="validationDefault04">Max Price</label>
-        <select form="validationDefault04" class="form-control">
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-        </select>
+        <label asp-for="MaxPrice"></label>
+        <input asp-for="MaxPrice" class="form-control">
+        <span asp-validation-for="MaxPrice" class="small text-danger"></span>
     </div>
     <div class="col-md-4 mt-5">
-        <button class="btn btn-primary" type="submit">Search</button>
+        <input class="btn btn-primary" type="submit" value="Search" />
     </div>
 </form>
 

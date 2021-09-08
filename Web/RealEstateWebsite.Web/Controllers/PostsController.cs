@@ -6,6 +6,7 @@
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Services.Data;
     using RealEstateWebsite.Web.ViewModels.Posts;
+    using RealEstateWebsite.Web.ViewModels.Home;
 
     public class PostsController : Controller
     {
@@ -26,6 +27,13 @@
         public IActionResult All()
         {
             var posts = this.postsService.GetAllPosts();
+
+            return this.View(posts);
+        }
+
+        public IActionResult BySearch(IndexSearchViewModel searchTerms)
+        {
+            var posts = this.postsService.GetAllPostsBySearch(searchTerms);
 
             return this.View(posts);
         }
