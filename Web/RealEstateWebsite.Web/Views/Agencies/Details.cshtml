@@ -1,0 +1,44 @@
+﻿@model AgencyDetailsViewModel
+
+@{ 
+    ViewBag.Title = $"Details about {Model.Name}";
+}
+
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">@Model.Name</h1>
+        <div>
+            <div class="form-group text-center">
+                <img src="@Model.AgenciesPictures[Model.Name]" class="img-fluid" style="max-width: 500px">
+            </div>
+            <div class="form-group">
+                <label for="startPoint">Description</label>
+                <input type="text" readonly class="form-control" value="@Model.Description">
+            </div>
+            <div class="form-group">
+                <label for="endPoint">Address</label>
+                <input type="text" readonly class="form-control" value="@Model.Address">
+            </div>
+            <div class="form-group">
+                <label for="departureTime">Email</label>
+                <input type="text" readonly class="form-control" value="@Model.Email">
+            </div>
+            @if (Model.PhoneNumber != null)
+            {
+                <div class="form-group">
+                    <label for="seats">Phone Number</label>
+                    <input type="text" readonly class="form-control" value="@Model.PhoneNumber">
+                </div>
+            }
+            <div class="form-group">
+                <label for="description">Web Site</label>
+                <input type="text" readonly class="form-control" value="@Model.WebSiteUrl">
+            </div>
+            <div class="form-group text-center">
+                <div class="button-holder">
+                    <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@Model.AgentId" class="btn btn-primary btn-block text-uppercase">Current Offers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

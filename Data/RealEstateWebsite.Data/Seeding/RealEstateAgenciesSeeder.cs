@@ -10,12 +10,13 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+
             if (dbContext.RealEstateAgents.Any())
             {
                 return;
             }
 
-            await dbContext.RealEstateAgents.AddAsync(new EstateAgent 
+            await dbContext.RealEstateAgents.AddAsync(new EstateAgent
             {
                 Name = "Rotterdam Apartments",
                 WebSiteUrl = "https://rotterdamapartments.com/en",

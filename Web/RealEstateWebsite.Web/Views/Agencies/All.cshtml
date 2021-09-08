@@ -14,7 +14,7 @@
             <div class="card-body">
                 <h5 class="card-title">@agent.Name</h5>
                 <p class="card-text">@agent.Description</p>
-                <a href="#" class="btn btn-primary">See more</a>
+                <a asp-controller="Agencies" asp-action="Details" asp-route-agentId="@agent.AgentId" class="btn btn-primary">See more</a>
             </div>
             <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@agent.AgentId" class="card-footer text-muted">
                 @agent.TotalPropertiesCount Rental Offers

@@ -37,5 +37,12 @@
 
             return this.View(allAgencies);
         }
+
+        public IActionResult Details(int agentId)
+        {
+            var agencyDetails = this.agenciesService.GetAgencyDetails(agentId);
+
+            return this.View(agencyDetails);
+        }
     }
 }
