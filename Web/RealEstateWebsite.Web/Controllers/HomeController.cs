@@ -10,9 +10,13 @@
     public class HomeController : Controller
     {
         private readonly IPropertiesService propertiesService;
+        private readonly IStatisticsService statisticsService;
 
-        public HomeController(IPropertiesService propertiesService)
-            => this.propertiesService = propertiesService;
+        public HomeController(IPropertiesService propertiesService, IStatisticsService statisticsService)
+        {
+            this.propertiesService = propertiesService;
+            this.statisticsService = statisticsService;
+        }
 
         public IActionResult Index()
         {
@@ -20,6 +24,7 @@
             {
                 Districts = this.propertiesService.GetPropertyDistricts(),
                 Types = this.propertiesService.GetPropertiesTypes(),
+                Statistics = this.statisticsService.GetStatistics(),
             });
         }
 

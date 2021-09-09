@@ -5,6 +5,7 @@
 
     using RealEstateWebsite.Data.Models.Enum;
     using RealEstateWebsite.Web.ViewModels.Administration.Properties;
+    using RealEstateWebsite.Web.ViewModels.Statistics;
 
     public class IndexSearchViewModel
     {
@@ -16,6 +17,8 @@
 
         [Display(Name = "Max Price")]
         public decimal MaxPrice { get; set; }
+
+        public StatisticsViewModel Statistics { get; set; }
 
         public IEnumerable<PropertysDistrictViewModel> Districts { get; set; }
 

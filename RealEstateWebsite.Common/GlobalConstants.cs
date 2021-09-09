@@ -2,7 +2,7 @@
 {
     public static class GlobalConstants
     {
-        public const string SystemName = "ASAP Rentals";
+        public const string SystemName = "ASP.Net Core MVC Educational Project";
 
         public const string AdministratorRoleName = "Administrator";
     }
