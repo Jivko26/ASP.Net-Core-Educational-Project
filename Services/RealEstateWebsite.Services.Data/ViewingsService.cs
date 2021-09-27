@@ -8,6 +8,7 @@
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.Viewings;
     using RealEstateWebsite.Web.ViewModels.Viewings;
 

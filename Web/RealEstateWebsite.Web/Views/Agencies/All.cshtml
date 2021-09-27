@@ -17,7 +17,7 @@
                 <a asp-controller="Agencies" asp-action="Details" asp-route-agentId="@agent.AgentId" class="btn btn-primary">See more</a>
             </div>
             <a asp-controller="Posts" asp-action="ByAgent" asp-route-agentId="@agent.AgentId" class="card-footer text-muted">
-                @agent.TotalPropertiesCount Rental Offers
+                @agent.PropertiesCount Rental Offers
             </a>
         </div>
     }

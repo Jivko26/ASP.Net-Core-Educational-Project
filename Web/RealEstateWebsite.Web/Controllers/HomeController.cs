@@ -3,7 +3,7 @@
     using System.Diagnostics;
 
     using Microsoft.AspNetCore.Mvc;
-    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Web.ViewModels;
     using RealEstateWebsite.Web.ViewModels.Home;
 

@@ -8,6 +8,9 @@
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
     using RealEstateWebsite.Data.Models.Enum;
+    using RealEstateWebsite.Services.Data.Interfaces;
+    using RealEstateWebsite.Services.Data.ServiceModels.Agencies;
+    using RealEstateWebsite.Services.Data.ServiceModels.District;
     using RealEstateWebsite.Services.Data.ServiceModels.Properties;
     using RealEstateWebsite.Web.ViewModels.Administration.Properties;
 

@@ -4,7 +4,7 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
-    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Web.ViewModels.Administration.Properties;
 
     public class PropertiesController : AdministrationController

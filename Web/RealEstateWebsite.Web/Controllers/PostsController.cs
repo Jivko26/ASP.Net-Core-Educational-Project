@@ -4,9 +4,9 @@
     using Microsoft.AspNetCore.Mvc;
     using RealEstateWebsite.Common;
     using RealEstateWebsite.Data.Models;
-    using RealEstateWebsite.Services.Data;
-    using RealEstateWebsite.Web.ViewModels.Posts;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Web.ViewModels.Home;
+    using RealEstateWebsite.Web.ViewModels.Posts;
 
     public class PostsController : Controller
     {

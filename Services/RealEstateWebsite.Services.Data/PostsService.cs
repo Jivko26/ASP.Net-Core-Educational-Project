@@ -6,6 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using RealEstateWebsite.Data;
     using RealEstateWebsite.Data.Models;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.Posts;
     using RealEstateWebsite.Web.ViewModels.Home;
 

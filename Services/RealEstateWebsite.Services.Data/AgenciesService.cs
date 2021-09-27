@@ -4,6 +4,7 @@
     using System.Linq;
 
     using RealEstateWebsite.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.Agencies;
     using RealEstateWebsite.Web.ViewModels.Agencies;
 
@@ -56,9 +57,9 @@
                     AgentId = a.Id,
                     Name = a.Name,
                     Description = a.Description,
-                    TotalPropertiesCount = a.Properties.Count(),
+                    PropertiesCount = a.Properties.Count(),
                 })
-                .OrderByDescending(ea => ea.TotalPropertiesCount)
+                .OrderByDescending(ea => ea.PropertiesCount)
                 .ToList();
 
         public int GetEstateAgentId(string name)

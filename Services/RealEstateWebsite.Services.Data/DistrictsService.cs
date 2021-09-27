@@ -4,6 +4,7 @@
     using System.Linq;
 
     using RealEstateWebsite.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.District;
 
     public class DistrictsService : IDistrictsService

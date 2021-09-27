@@ -5,7 +5,7 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
-    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.Agencies;
 
     public class AgenciesController : Controller
@@ -29,7 +29,6 @@
             {
                 allAgencies = this.agenciesService
                    .GetAllAgencies()
-                   .AsEnumerable()
                    .ToList();
 
                 this.cache.Set(allAgenciesCacheKey, allAgencies);

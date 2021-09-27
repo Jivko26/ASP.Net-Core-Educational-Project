@@ -17,6 +17,7 @@
     using RealEstateWebsite.Data.Repositories;
     using RealEstateWebsite.Data.Seeding;
     using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Mapping;
     using RealEstateWebsite.Services.Messaging;
     using RealEstateWebsite.Web.ViewModels;

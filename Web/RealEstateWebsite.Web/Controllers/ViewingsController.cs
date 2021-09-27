@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using RealEstateWebsite.Data.Models.Enum;
-    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Web.Infrastructure;
     using RealEstateWebsite.Web.ViewModels.Viewings;
 

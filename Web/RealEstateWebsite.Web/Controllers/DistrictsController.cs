@@ -5,24 +5,28 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
-    using RealEstateWebsite.Services.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Services.Data.ServiceModels.District;
 
     public class DistrictsController : Controller
     {
         private readonly IDistrictsService districtsService;
         private readonly IPropertiesService propertiesService;
+        private readonly IMemoryCache memoryCache;
 
         public DistrictsController(
             IDistrictsService districtsService,
-            IPropertiesService propertiesService)
+            IPropertiesService propertiesService,
+            IMemoryCache memoryCache)
         {
             this.districtsService = districtsService;
             this.propertiesService = propertiesService;
+            this.memoryCache = memoryCache;
         }
 
         public IActionResult All()
         {
+            const string allDistrictsCacheKey = "AllDistrictsCacheKey";
 
             var allDistricts = this.districtsService.GetAllDistricts();
 

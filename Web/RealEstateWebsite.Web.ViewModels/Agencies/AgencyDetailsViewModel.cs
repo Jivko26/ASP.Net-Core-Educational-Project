@@ -2,7 +2,10 @@
 {
     using System.Collections.Generic;
 
-    public class AgencyDetailsViewModel
+    using RealEstateWebsite.Data.Models;
+    using RealEstateWebsite.Services.Mapping;
+
+    public class AgencyDetailsViewModel : IMapFrom<EstateAgent>
     {
         public int AgentId { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace RealEstateWebsite.Services.Data
+﻿namespace RealEstateWebsite.Services.Data.Interfaces
 {
     using RealEstateWebsite.Web.ViewModels.Statistics;
 

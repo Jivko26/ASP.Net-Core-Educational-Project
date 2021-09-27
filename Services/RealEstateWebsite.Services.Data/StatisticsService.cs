@@ -3,6 +3,7 @@
     using System.Linq;
 
     using RealEstateWebsite.Data;
+    using RealEstateWebsite.Services.Data.Interfaces;
     using RealEstateWebsite.Web.ViewModels.Statistics;
 
     public class StatisticsService : IStatisticsService

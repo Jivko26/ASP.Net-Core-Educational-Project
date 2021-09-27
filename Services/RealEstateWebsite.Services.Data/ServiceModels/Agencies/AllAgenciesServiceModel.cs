@@ -1,5 +1,7 @@
 ﻿namespace RealEstateWebsite.Services.Data.ServiceModels.Agencies
 {
+    using RealEstateWebsite.Data.Models;
+    using RealEstateWebsite.Services.Mapping;
 
     public class AllAgenciesServiceModel
     {
@@ -10,6 +12,6 @@
 
         public string Description { get; set; }
 
-        public int TotalPropertiesCount { get; set; }
+        public int PropertiesCount { get; set; }
     }
 }
